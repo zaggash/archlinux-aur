@@ -1,0 +1,11 @@
+# Ignore build packages
+*.pkg.tar.xz
+
+# Ignore repo DBs
+*.db.tar.gz
+*.db
+*.files.tar.gz
+*.files
+
+# Ignore Signatures
+*.sig

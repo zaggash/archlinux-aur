@@ -1,0 +1,24 @@
+# Maintainer: Alex P.
+
+_appname_=github-release
+pkgname=${_appname_}-bin
+pkgver=0.8.1
+pkgrel=1
+pkgdesc="Commandline app to create and edit releases on Github (and upload artifacts)  — built from pre-compiled binary."
+arch=('x86_64')
+url="https://github.com/aktau/${_appname_}"
+license=('MIT')
+provides=("${_appname_}")
+conflicts=("${_appname_}")
+source=(
+"${url}/releases/download/v${pkgver}/linux-amd64-${_appname_}.bz2"
+"https://raw.githubusercontent.com/${_appname_}/${_appname_}/v${pkgver}/LICENSE"
+)
+
+package() {
+  install -Dm755 $srcdir/linux-amd64-${_appname_} \
+    "${pkgdir}/usr/bin/${_appname_}"
+
+  install -Dm644 $srcdir/LICENSE "${pkgdir}/usr/share/licenses/$pkgname/LICENSE"
+}
+

@@ -1,0 +1,24 @@
+# Maintainer: Alex P.
+
+_appname_=drone-cli
+pkgname=${_appname_}-bin
+pkgver=1.2.1
+pkgrel=1
+pkgdesc="Command Line Tools for Drone CI — built from pre-compiled binary."
+arch=('x86_64')
+url="https://github.com/drone/${_appname_}"
+license=('MIT')
+provides=("${_appname_}")
+conflicts=("${_appname_}")
+source=(
+"${url}/releases/download/v${pkgver}/drone_linux_amd64.tar.gz"
+"https://raw.githubusercontent.com/drone/${_appname_}/v${pkgver}/LICENSE"
+)
+
+package() {
+  install -Dm755 "$srcdir/drone" \
+    "${pkgdir}/usr/bin/drone"
+
+  install -Dm644 $srcdir/LICENSE "${pkgdir}/usr/share/licenses/$pkgname/LICENSE"
+}
+

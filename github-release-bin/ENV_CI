@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+platform="github"
+project="aktau/github-release"

@@ -1,0 +1,24 @@
+# Maintainer: Alex P.
+
+_appname_=rbac-lookup
+pkgname=${_appname_}-bin
+pkgver=0.5.0
+pkgrel=1
+pkgdesc="Easily find roles and cluster roles attached to any user, service account, or group name in your Kubernetes cluster"
+arch=('x86_64')
+url="https://github.com/FairwindsOps/${_appname_}"
+license=('MIT')
+provides=("${_appname_}")
+conflicts=("${_appname_}")
+source=(
+"${url}/releases/download/v${pkgver}/${_appname_}_${pkgver}_Linux_${arch}.tar.gz"
+"https://raw.githubusercontent.com/FairwindsOps/${_appname_}/v${pkgver}/LICENSE"
+)
+
+package() {
+  install -Dm755 $srcdir/${_appname_} \
+    "${pkgdir}/usr/bin/${_appname_}"
+
+  install -Dm644 $srcdir/LICENSE "${pkgdir}/usr/share/licenses/$pkgname/LICENSE"
+}
+
