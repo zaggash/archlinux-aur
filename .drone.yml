@@ -18,32 +18,21 @@ steps:
   - git config --global user.name "BotCI"
     # * Check if a new version is available
     # * Create a file tag if true to only build if updated
-    # * Update pkgver with latest version
+    # * Update pkg with latest version
   - |
-    for tag in $(find ./* -type f -name "ENV_CI")
+    for tag in $(find ./* -type f -name "PKGBUILD")
     do
-      echo "Checking $tag..."
       pkg_dir=$(dirname $tag)
-      pkg_name=$(basename $pkg_dir)
-      latest=$(bash ./check_latest_version.sh "$pkg_dir/ENV_CI")
-      current=$(grep "pkgver=" "$pkg_dir/PKGBUILD" | cut -d'=' -f2 )
-      if [[ "$latest" != "$current" ]]
-      then
-        echo "New version found !"
-        echo "$latest" > "$pkg_dir/new_version_tag"
-        sed -i "s#^pkgver.*#pkgver=$latest#" "$pkg_dir/PKGBUILD"
-        git add "$pkg_dir/PKGBUILD"
-        git add  "$pkg_dir/new_version_tag"
-        echo " * Bump $pkg_name version from $current to $latest" >> commit_msg
-      fi
+      echo "Checking $pkg_dir..."
+      bash ./check_latest_version.sh "$pkg_dir"
     done
   - |
     if [[ -f commit_msg ]]
     then
+      git add new_versions_tag
       git commit -F commit_msg
     else
-      echo "No Update, nothing to commit !"
-      exit 0
+      echo "No packages updated, nothing to commit !"
     fi
 
 - name: commit_update
@@ -161,13 +150,15 @@ steps:
     # Give time to docker service to start
   - sleep 10s
     # Build packages
-    # if Author is "BotCI" then only build pkg with "new_version_tag"
+    # if Author is "BotCI" then only build pkg in "new_versions_tag"
   - |
-    TAG="PKGBUILD"
-    [[ "$DRONE_COMMIT_AUTHOR_NAME" == "BotCI" ]] && TAG="new_version_tag"
-    for pkg in $(find ./* -type f -name "$TAG")
+    for path in $(find ./* -type f -name "PKGBUILD")
     do
-      cd $(dirname $pkg)
+      if [[ "$DRONE_COMMIT_AUTHOR_NAME" == "BotCI" ]] && [[ ! $(cat new_versions_tag | grep "$path") ]]
+      then
+        continue
+      fi
+      cd $(dirname $path)
       docker run -e EXPORT_PKG=true -e CHECKSUM_SRC=true -e PGPKEY="$PGP_KEY" -v "$(pwd):/pkg" zaggash/arch-makepkg
       cd ..
     done
@@ -231,26 +222,27 @@ steps:
   - ssh-add ~/.ssh/key
   - cd $current_dir
     # if the commit come from "BotCI"
-    #  * only build pkg where "new_version_tag"
+    #  * only build pkg in "new_versions_tag"
     #  * remove existing previous pkgs versions AND rsync
   - |
-    if [[ "$DRONE_COMMIT_AUTHOR_NAME" == "BotCI" ]]
+    if [[ "$DRONE_COMMIT_AUTHOR_NAME" != "BotCI" ]]
     then
-      for tag in $(find ./* -type f -name "new_version_tag")
+      OPTIONS="-avhP -I --delete"
+    else
+      OPTIONS="-avhP -I"
+      for pkg in $(cat new_versions_tag)
       do
-        pkg=$(basename $(dirname $tag))
         [[ -n $pkg ]] || exit 1
         echo "rm /home/project-web/zaggarch-repo/htdocs/x86_64/$pkg*" |\
           sftp -o StrictHostKeyChecking=yes zaggash@web.sourceforge.net
-        rm -f $tag
       done
-      OPTIONS="-avhP -I" 
-    else
-      OPTIONS="-avhP -I --delete"
     fi
+    
     eval "rsync -e 'ssh -o StrictHostKeyChecking=yes' \
       $OPTIONS \
       /repo/x86_64 zaggash@web.sourceforge.net:/home/project-web/zaggarch-repo/htdocs/"
+
+  - rm new_versions_tag
 
 - name: commit_remove-tag
   image: appleboy/drone-git-push
@@ -262,7 +254,7 @@ steps:
     branch: master
     remote: git@github.com:zaggash/archlinux-aur.git
     commit: true
-    commit_message: "Purge new_version_tag [bot][skip ci]"
+    commit_message: "Remove new_versions_tag file [bot][skip ci]"
     force: false
 
 - name: notify_telegram

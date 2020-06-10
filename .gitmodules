@@ -1,0 +1,3 @@
+[submodule "azure-cli"]
+	path = azure-cli
+	url = https://aur.archlinux.org/azure-cli.git
