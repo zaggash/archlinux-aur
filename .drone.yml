@@ -10,6 +10,11 @@ trigger:
   - check_packages_update
 
 steps:
+- name: sync_submodules
+  image: alpine/git
+  commands:
+  - git submodule update --init --recursive -j 8
+
 - name: check_new_version
   image: archlinux
   commands:
@@ -138,6 +143,11 @@ services:
     path: /var/run
 
 steps:
+- name: sync_submodules
+  image: alpine/git
+  commands:
+  - git submodule update --init --recursive -j 8
+
 - name: build_packages
   image: docker:dind
   volumes:
