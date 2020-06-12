@@ -16,7 +16,8 @@ fi
 case "$platform" in
   submodule)
     current_version=$(git -C "$PKG_DIR" log -1 --pretty=format:%H)
-    git -C "$PKG_DIR" pull -q
+    git -C "$PKG_DIR" checkout master
+    git -C "$PKG_DIR" pull
     latest_version=$(git -C "$PKG_DIR" log -1 --pretty=format:%H)
     ;;
   github.com)
