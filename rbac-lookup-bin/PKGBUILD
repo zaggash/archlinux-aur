@@ -6,7 +6,7 @@ pkgrel=1
 pkgdesc="Easily find roles and cluster roles attached to any user, service account, or group name in your Kubernetes cluster"
 arch=('x86_64')
 url="https://github.com/FairwindsOps/rbac-lookup"
-license=('MIT')
+license=('APACHE')
 source=(
 "${url}/releases/download/v${pkgver}/rbac-lookup_${pkgver}_Linux_${arch}.tar.gz"
 "https://raw.githubusercontent.com/FairwindsOps/rbac-lookup/v${pkgver}/LICENSE"

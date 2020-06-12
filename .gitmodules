@@ -7,3 +7,6 @@
 [submodule "vscodium-bin"]
 	path = vscodium-bin
 	url = https://aur.archlinux.org/vscodium-bin.git
+[submodule "betterlockscreen"]
+	path = betterlockscreen
+	url = https://aur.archlinux.org/betterlockscreen.git
