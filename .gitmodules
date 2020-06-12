@@ -16,3 +16,6 @@
 [submodule "doctl-bin"]
 	path = doctl-bin
 	url = https://aur.archlinux.org/doctl-bin.git/
+[submodule "downgrade"]
+	path = downgrade
+	url = https://aur.archlinux.org/downgrade.git/
