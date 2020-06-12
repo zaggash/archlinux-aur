@@ -34,3 +34,6 @@
 [submodule "mojave-ct-icon-theme-git"]
 	path = mojave-ct-icon-theme-git
 	url = https://aur.archlinux.org/mojave-ct-icon-theme-git.git/
+[submodule "nerd-fonts-hack"]
+	path = nerd-fonts-hack
+	url = https://aur.archlinux.org/nerd-fonts-hack.git/
