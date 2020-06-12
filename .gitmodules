@@ -19,3 +19,6 @@
 [submodule "downgrade"]
 	path = downgrade
 	url = https://aur.archlinux.org/downgrade.git/
+[submodule "informant"]
+	path = informant
+	url = https://aur.archlinux.org/informant.git/
