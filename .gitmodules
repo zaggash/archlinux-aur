@@ -43,3 +43,6 @@
 [submodule "pamac-aur"]
 	path = pamac-aur
 	url = https://aur.archlinux.org/pamac-aur.git/
+[submodule "polybar"]
+	path = polybar
+	url = https://aur.archlinux.org/polybar.git/
