@@ -55,3 +55,6 @@
 [submodule "xcwd-git"]
 	path = xcwd-git
 	url = https://aur.archlinux.org/xcwd-git.git/
+[submodule "yay-bin"]
+	path = yay-bin
+	url = https://aur.archlinux.org/yay-bin.git/
