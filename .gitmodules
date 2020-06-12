@@ -4,3 +4,6 @@
 [submodule "zoom"]
 	path = zoom
 	url = https://aur.archlinux.org/zoom.git
+[submodule "vscodium-bin"]
+	path = vscodium-bin
+	url = https://aur.archlinux.org/vscodium-bin.git
