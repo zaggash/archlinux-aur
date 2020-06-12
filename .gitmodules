@@ -22,3 +22,6 @@
 [submodule "informant"]
 	path = informant
 	url = https://aur.archlinux.org/informant.git/
+[submodule "keybase-bin"]
+	path = keybase-bin
+	url = https://aur.archlinux.org/keybase-bin.git/
