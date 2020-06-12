@@ -46,3 +46,6 @@
 [submodule "polybar"]
 	path = polybar
 	url = https://aur.archlinux.org/polybar.git/
+[submodule "slack-desktop"]
+	path = slack-desktop
+	url = https://aur.archlinux.org/slack-desktop.git/
