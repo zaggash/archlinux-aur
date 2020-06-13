@@ -174,7 +174,7 @@ steps:
         -e EXPORT_PKG=true \
         -e CHECKSUM_SRC=true \
         -e PGPKEY="$PGP_KEY" \
-        -e PACKAGER="Alexandre Pinon <github@ziggzagg.fr>"
+        -e PACKAGER="Alexandre Pinon <github@ziggzagg.fr>" \
         -v "$(pwd):/pkg" zaggash/arch-makepkg
       cd ..
     done
