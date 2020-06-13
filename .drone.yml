@@ -164,7 +164,7 @@ steps:
   - |
     for path in $(find ./* -type f -name "PKGBUILD")
     do
-      if [[ "$DRONE_COMMIT_AUTHOR_NAME" == "BotCI" ]] && [[ ! $(cat new_versions_tag | grep "$path") ]]
+      if [[ -f new_versions_tag ]] && [[ ! $(echo "$path" | cut -d'/' -f 2 | grep -Fxf new_versions_tag) ]]
       then
         continue
       fi
@@ -197,7 +197,7 @@ steps:
   commands:
     # if incremental build, download existing repo db
   - |
-    [[ "$DRONE_COMMIT_AUTHOR_NAME" == "BotCI" ]] &&\
+    [[ -f new_versions_tag ]] && \
       curl -sL https://zaggarch-repo.sourceforge.io/x86_64/zaggarch-repo.db \
       -o /repo/x86_64/zaggarch-repo.db.tar.gz
   - echo "$PGP_KEY" | base64 -d | gpg --import
@@ -235,7 +235,7 @@ steps:
     #  * only build pkg in "new_versions_tag"
     #  * remove existing previous pkgs versions AND rsync
   - |
-    if [[ "$DRONE_COMMIT_AUTHOR_NAME" != "BotCI" ]]
+    if [[ ! -f new_versions_tag ]]
     then
       OPTIONS="-avhP -I --delete"
     else
