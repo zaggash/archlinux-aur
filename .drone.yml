@@ -175,7 +175,7 @@ steps:
         -e CHECKSUM_SRC=true \
         -e PGPKEY="$PGP_KEY" \
         -e PACKAGER="Alexandre Pinon <github@ziggzagg.fr>" \
-        -v "$(pwd):/pkg" zaggash/arch-makepkg
+        -v "$(pwd):/pkg" zaggash/arch-makepkg || exit 1
       cd ..
     done
 
