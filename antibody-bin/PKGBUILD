@@ -1,7 +1,7 @@
 #Maintainer: Alexandre P.
 
 pkgname=antibody-bin
-pkgver=6.0.0
+pkgver=6.0.1
 pkgrel=1
 pkgdesc="Antibody is a shell plugin manager made from the ground up thinking about performance"
 arch=('i686' 'x86_64' 'armv6h' 'armv7h' 'aarch64')
