@@ -253,7 +253,6 @@ steps:
     eval "rsync -e 'ssh -o StrictHostKeyChecking=yes' \
       $OPTIONS \
       /repo/x86_64 zaggash@web.sourceforge.net:/home/project-web/zaggarch-repo/htdocs/"
-  - git pull
   - rm -f new_versions_tag
 
 - name: commit_remove-tag
