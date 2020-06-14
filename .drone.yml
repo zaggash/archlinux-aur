@@ -34,7 +34,7 @@ steps:
   - |
     if [[ -f commit_msg ]]
     then
-      sed -i '1iPackage updated:' new_versions_tag
+      sed -i '1iPackage updated:' commit_msg
       git add new_versions_tag
       git commit -F commit_msg
     else
