@@ -62,14 +62,11 @@ steps:
       from_secret: TELEGRAM_GROUPID
     format: markdown
     message: >
-      {{#success build.status}}
-        Triggered Incremental Repo update - success.
-      {{else}}
-        Triggered Incremental Repo update - failure.
-      {{/success}}
+      ❌ Check Packages Update #{{build.number}} of `{{repo.name}}` failed.  
+
+      🌐 {{ build.link }}
   when:
     status:
-    - success
     - failure
 
 ---
@@ -108,14 +105,11 @@ steps:
       from_secret: TELEGRAM_GROUPID
     format: markdown
     message: >
-      {{#success build.status}}
-        Triggered Full Repo build - success.
-      {{else}}
-        Triggered Full Repo build - failure.
-      {{/success}}
+      ❌ Full Repo build #{{build.number}} of `{{repo.name}}` failed.  
+
+      🌐 {{ build.link }}
   when:
     status:
-    - success
     - failure
 
 ---
@@ -283,9 +277,29 @@ steps:
     format: markdown
     message: >
       {{#success build.status}}
-        Arch Repo Update - success.
+      ✅ Arch Repo Build #{{build.number}} of `{{repo.name}}` succeeded.
+
+
+      📝 Commit by {{commit.author}} on `{{commit.branch}}`:
+
+      ```
+      {{commit.message}}
+      ```
+
+
+      🌐 {{ build.link }}
       {{else}}
-        Arch Repo Update - failure.
+      ❌ Arch Repo Build #{{build.number}} of `{{repo.name}}` failed.
+
+
+      📝 Commit by {{commit.author}} on `{{commit.branch}}`:
+
+      ```
+      {{commit.message}}
+      ```
+
+
+      🌐 {{ build.link }}
       {{/success}}
   when:
     status:
