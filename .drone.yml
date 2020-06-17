@@ -181,8 +181,9 @@ steps:
   commands:
     # Move build packages
   - |
-    for pkg in $(find ./* -type f -name "*.pkg.tar.*")
+    for sig in $(find ./* -type f -name "*.pkg.tar.xz.sig")
     do
+      pkg=${sig%.*}
       mv "$pkg" "/repo/x86_64/"
     done
 
