@@ -183,8 +183,8 @@ steps:
   - |
     for sig in $(find ./* -type f -name "*.pkg.tar.xz.sig")
     do
-      pkg=${sig%.*}
-      mv "$pkg" "/repo/x86_64/"
+      pkg=$${sig%.*}
+      mv "$pkg"* "/repo/x86_64/"
     done
 
 - name: generate_repo_db
