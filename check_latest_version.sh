@@ -15,10 +15,12 @@ fi
 
 case "$platform" in
   submodule)
-    current_version=$(git -C "$PKG_DIR" log -1 --pretty=format:%H)
+    source "$PKG_DIR/PKGBUILD"
+    current_version="$pkgver-$pkgrel"
     git -C "$PKG_DIR" checkout master
     git -C "$PKG_DIR" pull
-    latest_version=$(git -C "$PKG_DIR" log -1 --pretty=format:%H)
+    source "$PKG_DIR/PKGBUILD"
+    latest_version="$pkgver-$pkgrel"
     ;;
   github.com)
     repo=$(sed -n 's/^url="\(.*\)"/\1/p' "$PKG_DIR/PKGBUILD" | cut -d'/' -f 4-5)
