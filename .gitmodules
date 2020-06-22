@@ -64,3 +64,6 @@
 [submodule "noto-fonts-emoji-blob"]
 	path = noto-fonts-emoji-blob
 	url = https://aur.archlinux.org/noto-fonts-emoji-blob.git/
+[submodule "batsignal"]
+	path = batsignal
+	url = https://aur.archlinux.org/batsignal.git
