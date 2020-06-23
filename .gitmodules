@@ -37,9 +37,6 @@
 [submodule "nerd-fonts-noto-sans-regular-complete"]
 	path = nerd-fonts-noto-sans-regular-complete
 	url = https://aur.archlinux.org/nerd-fonts-noto-sans-regular-complete.git/
-[submodule "pamac-aur"]
-	path = pamac-aur
-	url = https://aur.archlinux.org/pamac-aur.git/
 [submodule "polybar"]
 	path = polybar
 	url = https://aur.archlinux.org/polybar.git/
