@@ -64,3 +64,6 @@
 [submodule "batsignal"]
 	path = batsignal
 	url = https://aur.archlinux.org/batsignal.git
+[submodule "authy-snap"]
+	path = authy-snap
+	url = https://aur.archlinux.org/authy-snap.git/
