@@ -181,7 +181,7 @@ steps:
   commands:
     # Move build packages
   - |
-    for sig in $(find ./* -type f -name "*.pkg.tar.xz.sig")
+    for sig in $(find ./* -type f -name "*.pkg.*.sig")
     do
       pkg=$${sig%.*}
       mv "$pkg"* "/repo/x86_64/"
@@ -203,7 +203,7 @@ steps:
       -o /repo/x86_64/zaggarch-repo.db.tar.gz
   - echo "$PGP_KEY" | base64 -d | gpg --import
   - cd /repo
-  - repo-add --sign x86_64/zaggarch-repo.db.tar.gz x86_64/*.pkg.tar.xz
+  - repo-add --sign x86_64/zaggarch-repo.db.tar.gz x86_64/*.pkg.*
   - find ./ -type l -delete
   - mv x86_64/zaggarch-repo.db.tar.gz x86_64/zaggarch-repo.db
   - mv x86_64/zaggarch-repo.db.tar.gz.sig x86_64/zaggarch-repo.db.sig
