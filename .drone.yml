@@ -203,7 +203,6 @@ steps:
       -o /repo/x86_64/zaggarch-repo.db.tar.gz
   - echo "$PGP_KEY" | base64 -d | gpg --import
   - cd /repo
-  - repo-add --sign x86_64/zaggarch-repo.db.tar.gz x86_64/*.pkg.xz
   - repo-add --sign x86_64/zaggarch-repo.db.tar.gz x86_64/*.pkg.zst
   - find ./ -type l -delete
   - mv x86_64/zaggarch-repo.db.tar.gz x86_64/zaggarch-repo.db
