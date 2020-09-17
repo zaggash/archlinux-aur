@@ -67,3 +67,6 @@
 [submodule "molotov"]
 	path = molotov
 	url = https://aur.archlinux.org/molotov.git
+[submodule "lens"]
+	path = lens
+	url = https://aur.archlinux.org/lens.git
