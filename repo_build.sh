@@ -116,6 +116,15 @@ getLatestVersion () {
         jq -r '.tag_name' |\
         sed 's#[^0-9\.]*##g'
         )"
+
+      if [[ -z "$latest_version" ]]
+      then
+        latest_version="$(curl -skL \
+          "https://api.github.com/repos/$repo/tags" |\
+          jq -rn 'first( inputs | .[].name)' |\
+          sed 's#[^0-9\.]*##g'
+          )"
+      fi
       ;;
     *)
       echo "$platform is unknown !"
