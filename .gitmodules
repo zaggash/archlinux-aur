@@ -43,9 +43,6 @@
 [submodule "slack-desktop"]
 	path = slack-desktop
 	url = https://aur.archlinux.org/slack-desktop.git/
-[submodule "xcursor-breeze"]
-	path = xcursor-breeze
-	url = https://aur.archlinux.org/xcursor-breeze.git/
 [submodule "xcwd-git"]
 	path = xcwd-git
 	url = https://aur.archlinux.org/xcwd-git.git/
