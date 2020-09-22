@@ -1,49 +1,45 @@
 ---
-# check update and trigger incremental update
+# check update and incremental update
 kind: pipeline
 type: docker
-name: check_package_update
+name: incremental_build
 trigger:
   event:
   - cron
   cron:
-  - check_packages_update
+  - check_updates
+
+volumes:
+- name: dockersock
+  temp: {}
+
+services:
+- name: docker_engine
+  image: docker:dind
+  privileged: true
+  volumes:
+  - name: dockersock
+    path: /var/run
 
 steps:
-- name: sync_submodules
-  image: alpine/git
-  commands:
-  - git submodule update --init --recursive -j 8
-
-- name: check_new_version
+- name: build_repo
   image: archlinux
+  environment:
+    TZ: Europe/Paris
+    PGP_KEY:
+      from_secret: PGP_KEY
+    SSH_KEY:
+      from_secret: SOURCEFORGE_SSH_KEY
+  volumes:
+  - name: dockersock
+    path: /var/run
   commands:
-  - pacman -Syy --noconfirm --needed git jq
-  - git config --global user.email "bot@ci"
-  - git config --global user.name "BotCI"
-    # * Check if a new version is available
-    # * Create a file tag if true to only build if updated
-    # * Update pkg with latest version
-  - |
-    for tag in $(find ./* -type f -name "PKGBUILD")
-    do
-      pkg_dir=$(dirname $tag)
-      echo "Checking $pkg_dir..."
-      bash ./check_latest_version.sh "$pkg_dir"
-    done
-  - |
-    if [[ -f commit_msg ]]
-    then
-      sed -i '1iPackage updated:' commit_msg
-      git add new_versions_tag
-      git commit -F commit_msg
-    else
-      echo "No packages updated, nothing to commit !"
-    fi
+    - bash ./repo_build.sh "incremental" "$${PGP_KEY}" "$${SSH_KEY}"
 
-- name: commit_update
+- name: commit_packages_update
   image: appleboy/drone-git-push
   settings:
+    TZ: Europe/Paris
     ssh_key:
       from_secret: CI_SSH_KEY
     author_name: BotCI
@@ -62,39 +58,74 @@ steps:
       from_secret: TELEGRAM_GROUPID
     format: markdown
     message: >
-      ❌ Check Packages Update #{{build.number}} of `{{repo.name}}` failed.  
+      {{#success build.status}}
+      ✅ Incremental Arch Repo build #{{build.number}} of `{{repo.name}}` succeeded.
+
+
+      📝 Commit by {{commit.author}} on `{{commit.branch}}`:
+
+      ```
+      {{commit.message}}
+      ```
+
 
       🌐 {{ build.link }}
+      {{else}}
+      ❌ Incremental Arch Repo build #{{build.number}} of `{{repo.name}}` failed.
+
+
+      📝 Commit by {{commit.author}} on `{{commit.branch}}`:
+
+      ```
+      {{commit.message}}
+      ```
+
+
+      🌐 {{ build.link }}
+      {{/success}}
   when:
     status:
+    - success
     - failure
 
 ---
-# Cron pipeline to force full rebuild.
+# Cron pipeline full rebuild.
 kind: pipeline
 type: docker
-name: rebuild_full_repo
+name: full_repo_build
 
 trigger:
   event:
   - cron
   cron:
-  - rebuild_full_repo
+  - full_build
+
+volumes:
+- name: dockersock
+  temp: {}
+
+services:
+- name: docker_engine
+  image: docker:dind
+  privileged: true
+  volumes:
+  - name: dockersock
+    path: /var/run
 
 steps:
-- name: trigger_build
-  image: appleboy/drone-git-push
-  settings:
-    ssh_key:
-      from_secret: CI_SSH_KEY
-    author_name: BotCI_full
-    author_email: bot@ci
-    branch: master
-    remote: git@github.com:zaggash/archlinux-aur.git
-    commit: true
-    empty_commit: true
-    commit_message: "Trigger full repo build [bot]"
-    force: false
+- name: build_repo
+  image: archlinux
+  environment:
+    TZ: Europe/Paris
+    PGP_KEY:
+      from_secret: PGP_KEY
+    SSH_KEY:
+      from_secret: SOURCEFORGE_SSH_KEY
+  volumes:
+  - name: dockersock
+    path: /var/run
+  commands:
+  - bash ./repo_build.sh "full" "$${PGP_KEY}" "$${SSH_KEY}"
 
 - name: notify_telegram
   image: appleboy/drone-telegram
@@ -112,197 +143,3 @@ steps:
     status:
     - failure
 
----
-# Rebuild all pkgs by default.
-# Incremental pkg build if "BotCI" push.
-kind: pipeline
-type: docker
-name: repo_builder
-
-trigger:
-  event:
-  - push
-
-volumes:
-- name: repo
-  temp: {}
-- name: dockersock
-  temp: {}
-
-services:
-- name: docker
-  image: docker:dind
-  privileged: true
-  volumes:
-  - name: dockersock
-    path: /var/run
-
-steps:
-- name: sync_submodules
-  image: alpine/git
-  commands:
-  - git submodule update --init --recursive -j 8
-
-- name: build_packages
-  image: docker:dind
-  volumes:
-  - name: dockersock
-    path: /var/run
-  environment:
-    PGP_KEY:
-      from_secret: PGP_KEY
-  commands:
-    # Give time to docker service to start
-  - sleep 10s
-    # Build packages
-    # if Author is "BotCI" then only build pkg in "new_versions_tag"
-  - |
-    for path in $(find ./* -type f -name "PKGBUILD")
-    do
-      if [[ -f new_versions_tag ]] && [[ ! $(echo "$path" | cut -d'/' -f 2 | grep -Fxf new_versions_tag) ]]
-      then
-        continue
-      fi
-      cd $(dirname $path)
-      docker run \
-        -e EXPORT_PKG=true \
-        -e CHECKSUM_SRC=true \
-        -e PGPKEY="$PGP_KEY" \
-        -e PACKAGER="Alexandre Pinon <github@ziggzagg.fr>" \
-        -v "$(pwd):/pkg" zaggash/arch-makepkg || exit 1
-      cd ..
-    done
-
-- name: move_packages
-  image: archlinux
-  volumes:
-  - name: repo
-    path: /repo/x86_64
-  commands:
-    # Move build packages
-  - |
-    for sig in $(find ./* -type f -name "*.pkg.*.sig")
-    do
-      pkg=$${sig%.*}
-      mv "$pkg"* "/repo/x86_64/"
-    done
-
-- name: generate_repo_db
-  image: archlinux
-  volumes:
-  - name: repo
-    path: /repo/x86_64
-  environment:
-    PGP_KEY:
-      from_secret: PGP_KEY
-  commands:
-    # if incremental build, download existing repo db
-  - |
-    [[ -f new_versions_tag ]] && \
-      curl -sL https://zaggarch-repo.sourceforge.io/x86_64/zaggarch-repo.db \
-      -o /repo/x86_64/zaggarch-repo.db.tar.gz
-  - echo "$PGP_KEY" | base64 -d | gpg --import
-  - cd /repo
-  - repo-add --sign x86_64/zaggarch-repo.db.tar.gz x86_64/*.pkg.tar.zst
-  - find ./ -type l -delete
-  - mv x86_64/zaggarch-repo.db.tar.gz x86_64/zaggarch-repo.db
-  - mv x86_64/zaggarch-repo.db.tar.gz.sig x86_64/zaggarch-repo.db.sig
-  - mv x86_64/zaggarch-repo.files.tar.gz x86_64/zaggarch-repo.files
-  - mv x86_64/zaggarch-repo.files.tar.gz.sig x86_64/zaggarch-repo.files.sig
-
-- name: sync_repo
-  image: archlinux
-  volumes:
-  - name: repo
-    path: /repo/x86_64
-  environment:
-    SSH_KEY:
-      from_secret: SOURCEFORGE_SSH_KEY
-  commands:
-  - current_dir=$(pwd)
-  - cd $HOME
-  - |
-    pacman -Syy --noconfirm --needed \
-      git \
-      openssh \
-      rsync
-  - mkdir -p ~/.ssh -m 700
-  - echo "web.sourceforge.net,216.105.38.21 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCwsY6sZT4MTTkHfpRzYjxG7mnXrGL74RCT2cO/NFvRrZVNB5XNwKNn7G5fHbYLdJ6UzpURDRae1eMg92JG0+yo=" > ~/.ssh/known_hosts
-  - echo "$SSH_KEY" > ~/.ssh/key
-  - chmod 600 ~/.ssh/key
-  - eval $(ssh-agent)
-  - ssh-add ~/.ssh/key
-  - cd $current_dir
-    # if the commit come from "BotCI"
-    #  * only build pkg in "new_versions_tag"
-    #  * remove existing previous pkgs versions AND rsync
-  - |
-    if [[ ! -f new_versions_tag ]]
-    then
-      OPTIONS="-avhP -I --delete"
-    else
-      OPTIONS="-avhP -I"
-      for pkg in $(cat new_versions_tag)
-      do
-        [[ -n $pkg ]] || exit 1
-        echo "rm /home/project-web/zaggarch-repo/htdocs/x86_64/$pkg*" |\
-          sftp -o StrictHostKeyChecking=yes zaggash@web.sourceforge.net
-      done
-    fi
-    
-    eval "rsync -e 'ssh -o StrictHostKeyChecking=yes' \
-      $OPTIONS \
-      /repo/x86_64 zaggash@web.sourceforge.net:/home/project-web/zaggarch-repo/htdocs/"
-  - rm -f new_versions_tag
-
-- name: commit_remove-tag
-  image: appleboy/drone-git-push
-  settings:
-    ssh_key:
-      from_secret: CI_SSH_KEY
-    author_name: BotCI
-    author_email: bot@ci
-    branch: master
-    remote: git@github.com:zaggash/archlinux-aur.git
-    commit: true
-    commit_message: "Remove new_versions_tag file [bot][skip ci]"
-    force: false
-
-- name: notify_telegram
-  image: appleboy/drone-telegram
-  settings:
-    token:
-      from_secret: TELEGRAM_TOKEN
-    to:
-      from_secret: TELEGRAM_GROUPID
-    format: markdown
-    message: >
-      {{#success build.status}}
-      ✅ Arch Repo Build #{{build.number}} of `{{repo.name}}` succeeded.
-
-
-      📝 Commit by {{commit.author}} on `{{commit.branch}}`:
-
-      ```
-      {{commit.message}}
-      ```
-
-
-      🌐 {{ build.link }}
-      {{else}}
-      ❌ Arch Repo Build #{{build.number}} of `{{repo.name}}` failed.
-
-
-      📝 Commit by {{commit.author}} on `{{commit.branch}}`:
-
-      ```
-      {{commit.message}}
-      ```
-
-
-      🌐 {{ build.link }}
-      {{/success}}
-  when:
-    status:
-    - success
-    - failure
