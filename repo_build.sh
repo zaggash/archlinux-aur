@@ -231,7 +231,7 @@ uploadRepo () {
 
   eval "rsync -e 'ssh -o StrictHostKeyChecking=yes' \
       $rsync_option \
-      $local_repo_dir/x86_64 zaggash@web.sourceforge.net:/home/project-web/zaggarch-repo/htdocs/"
+      $local_repo_dir/x86_64 zaggash@web.sourceforge.net:/home/frs/project/zaggarch-repo/"
 }
 
 prep_full_build() {
