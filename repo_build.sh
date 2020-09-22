@@ -170,7 +170,7 @@ checkUpdate () {
     submodule)
       [ $(git -C "$pkg_dir" rev-parse HEAD) != $(git -C "$pkg_dir" rev-parse master@{upstream}) ] && to_update="true"
       ;;
-    github)
+    github.com)
       [[ $(getCurrentVersion "$pkg_dir") != $(getLatestVersion "$pkg_dir") ]] && to_update="true"
       ;;
     *)
