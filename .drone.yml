@@ -57,32 +57,7 @@ steps:
     to:
       from_secret: TELEGRAM_GROUPID
     format: markdown
-    message: >
-      {{#success build.status}}
-      ✅ Incremental Arch Repo build #{{build.number}} of `{{repo.name}}` succeeded.
-
-
-      📝 Commit by {{commit.author}} on `{{commit.branch}}`:
-
-      ```
-      {{commit.message}}
-      ```
-
-
-      🌐 {{ build.link }}
-      {{else}}
-      ❌ Incremental Arch Repo build #{{build.number}} of `{{repo.name}}` failed.
-
-
-      📝 Commit by {{commit.author}} on `{{commit.branch}}`:
-
-      ```
-      {{commit.message}}
-      ```
-
-
-      🌐 {{ build.link }}
-      {{/success}}
+    message_file: notification_updates.tpl
   when:
     status:
     - success

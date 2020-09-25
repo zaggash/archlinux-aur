@@ -105,7 +105,7 @@ getLatestVersion () {
 
   case "$platform" in
     submodule)
-      source <(git --no-pager -C ./lens/ show master:PKGBUILD)
+      source <(git --no-pager -C $pkg_dir show master:PKGBUILD)
       latest_version="$pkgver-$pkgrel"
       ;;
     github.com)
@@ -297,6 +297,7 @@ main () {
     sed -i '1i[skip ci] Packages updated:' commit_msg
     git commit -F commit_msg
     cp /var/lib/pacman/sync/zaggarch-repo.db "$local_repo_root/x86_64/zaggarch-repo.db.tar.gz"
+    sed -e "/No Updates/r commit_msg" -e "/No Updates/d" notification_updates.tpl
   fi
 
   if [[ -f pkgs_to_build ]]
