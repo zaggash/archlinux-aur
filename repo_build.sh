@@ -225,17 +225,24 @@ genRepoDB () {
 
 uploadRepo () {
 ## Upload repo content to the remote webserver
-# $1 is true/false to delete non existing file on the remote webserver
+# $1 is true/false to delete non existing local files on the remote webserver
 
   local rsync_delete="$1"
   local local_repo_dir="$LOCAL_REPO_FOLDER"
   local rsync_option=""
+  local pkg=""
 
   if [[ "$rsync_delete" == "true" ]]
   then
     rsync_option="-avhP -I --delete"
   else
     rsync_option="-avhP -I"
+    for pkg in $(cat pkgs_to_build)
+      do
+        [[ -n $pkg ]] || exit 1
+        echo "rm /home/frs/project/zaggarch-repo/x86_64/$pkg*" |\
+          sftp -o StrictHostKeyChecking=yes zaggash@web.sourceforge.net
+      done
   fi
 
   eval "rsync -e 'ssh -o StrictHostKeyChecking=yes' \

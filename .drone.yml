@@ -1,13 +1,17 @@
 ---
-# check update and incremental update
 kind: pipeline
 type: docker
-name: incremental_build
+name: repo_build
+
 trigger:
   event:
   - cron
   cron:
   - check_updates
+  - full_build
+
+concurrency:
+  limit: 1
 
 volumes:
 - name: dockersock
@@ -22,6 +26,30 @@ services:
     path: /var/run
 
 steps:
+- name: is_update
+  image: archlinux
+  environment:
+    TZ: Europe/Paris
+  commands:
+    - echo "incremental" > build_options
+  when:
+    event:
+    - cron
+    cron:
+    - check_updates
+
+- name: is_full_build
+  image: archlinux
+  environment:
+    TZ: Europe/Paris
+  commands:
+    - echo "full" > build_options
+  when:
+    event:
+    - cron
+    cron:
+    - full_build
+
 - name: build_repo
   image: archlinux
   environment:
@@ -34,7 +62,8 @@ steps:
   - name: dockersock
     path: /var/run
   commands:
-    - bash ./repo_build.sh "incremental" "$${PGP_KEY}" "$${SSH_KEY}"
+    - "[[ -f build_options ]] && export BUILD_OPTIONS=$(cat build_options)"
+    - bash ./repo_build.sh "$BUILD_OPTIONS" "$${PGP_KEY}" "$${SSH_KEY}"
 
 - name: commit_packages_update
   image: appleboy/drone-git-push
@@ -63,58 +92,4 @@ steps:
     - success
     - failure
 
----
-# Cron pipeline full rebuild.
-kind: pipeline
-type: docker
-name: full_repo_build
-
-trigger:
-  event:
-  - cron
-  cron:
-  - full_build
-
-volumes:
-- name: dockersock
-  temp: {}
-
-services:
-- name: docker_engine
-  image: docker:dind
-  privileged: true
-  volumes:
-  - name: dockersock
-    path: /var/run
-
-steps:
-- name: build_repo
-  image: archlinux
-  environment:
-    TZ: Europe/Paris
-    PGP_KEY:
-      from_secret: PGP_KEY
-    SSH_KEY:
-      from_secret: SOURCEFORGE_SSH_KEY
-  volumes:
-  - name: dockersock
-    path: /var/run
-  commands:
-  - bash ./repo_build.sh "full" "$${PGP_KEY}" "$${SSH_KEY}"
-
-- name: notify_telegram
-  image: appleboy/drone-telegram
-  settings:
-    token:
-      from_secret: TELEGRAM_TOKEN
-    to:
-      from_secret: TELEGRAM_GROUPID
-    format: markdown
-    message: >
-      ❌ Full Repo build #{{build.number}} of `{{repo.name}}` failed.  
-
-      🌐 {{ build.link }}
-  when:
-    status:
-    - failure
 
