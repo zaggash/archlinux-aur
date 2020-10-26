@@ -19,10 +19,14 @@ MODULE="$(echo $GIT_URL | sed 's#.*/\(.*\).git#\1#')"
 
 ## run the script
 echo -e "\n * Updating the local repo"
-git pull
+git pull --recurse-submodules
 
 echo -e "\n * Adding submodule $MODULE"
 git submodule add "$GIT_URL" "$MODULE"
+
+echo -e "\n * Set HEAD-1 to force build on next CI build"
+cd "$MODULE"
+
 
 echo -e "\n * add commit message"
 git add .git/
