@@ -26,10 +26,12 @@ git submodule add "$GIT_URL" "$MODULE"
 
 echo -e "\n * Set HEAD-1 to force build on next CI build"
 cd "$MODULE"
+git reset --hard HEAD~1
+cd ..
 
 
 echo -e "\n * add commit message"
-git add .git/
+git add .gitmodules
 git add "$MODULE"
 git commit -m "add $MODULE AUR [skip ci]"
 
