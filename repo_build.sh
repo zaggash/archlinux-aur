@@ -8,6 +8,7 @@ REMOTE_REPO_NAME="zaggarch-repo"
 
 
 setupEnv () {
+  echo "* Prepare Build environment..."
   pacman -Syy --noconfirm --needed git jq openssh rsync docker
   mkdir -p "$LOCAL_REPO_FOLDER/x86_64/"
   ## setup git stuff
@@ -31,7 +32,7 @@ SigLevel = Required
   ## Prepare SSH key
   mkdir -p ~/.ssh -m 700
   echo "web.sourceforge.net,216.105.38.21 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCwsY6sZT4MTTkHfpRzYjxG7mnXrGL74RCT2cO/NFvRrZVNB5XNwKNn7G5fHbYLdJ6UzpURDRae1eMg92JG0+yo=" > ~/.ssh/known_hosts
-  echo -e "$SSH_KEY" > ~/.ssh/key
+  echo "$SSH_KEY" | base64 -d > ~/.ssh/key
   chmod 600 ~/.ssh/key
   eval $(ssh-agent)
   ssh-add ~/.ssh/key
@@ -76,7 +77,7 @@ getCurrentVersion () {
   local repodb="/var/lib/pacman/sync/$REMOTE_REPO_NAME.db"
   local platform="$(getPlatform "$pkg_dir")"
   local pkg_name="$(getPackageName "$pkg_dir")"
-  local current_version=""
+  local current_version="none"
 
   # Return package version or blank if not in the repo
   current_version=$(tar --exclude='*/*' -tf "$repodb" | sed -n "s@$pkg_name-\(.*\)/@\1@p")
