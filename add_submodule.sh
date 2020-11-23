@@ -8,10 +8,17 @@ if [[ $? -ne 0 ]]
     exit 10
 fi
 
-## check number of arguments
-[[ $# -ne 1 ]] && echo "One submodule is needed as argument !" && exit 10
+help() {
+  # Show Help
+  echo "This script adds a submodule to the repo in order to track it and build versions for the custom repo. "
+  echo "    Syntax: $0 [Package GIT URL]"
+  echo ""
+}
 
-! [[ $1 =~ https?://.*\.git ]] && echo "The URL is not a Git repo" && exit 11
+## check number of arguments
+[[ $# -ne 1 ]] && help && echo "One submodule is needed as argument !" && exit 10
+
+! [[ $1 =~ https?://.*\.git ]] && help && echo "The URL is not a Git repo" && exit 11
 
 ## set argument as named variable
 GIT_URL="$1"

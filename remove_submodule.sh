@@ -8,15 +8,22 @@ if [[ $? -ne 0 ]]
     exit 10
 fi
 
+help() {
+  # Show Help
+  echo "This script remove a submodule from the repo and commit the change. "
+  echo "    Syntax: $0 [Submodule name]"
+  echo ""
+}
+
 ## check number of arguments
-[[ $# -ne 1 ]] && echo "One submodule is needed as argument !" && exit 10
+[[ $# -ne 1 ]] && help && echo "One submodule is needed as argument !" && exit 10
 
 ## set argument as named variable
 MODULE=$1
 
 ## check if argument is a submodule
 grep -qs "$MODULE.git" .gitmodules
-[[ $? -ne 0 ]] && echo "Submodule is not found !" && exit 30
+[[ $? -ne 0 ]] && help && echo "Submodule is not found !" && exit 30
 
 ## run the script
 echo -e "\n * Updating the local repo"
