@@ -1,7 +1,7 @@
 pkgname=cura-appimage-bin
 _pkgname=Ultimaker_Cura
 _shortname=cura
-pkgver=0
+pkgver=4.8.0
 pkgrel=1
 pkgdesc='Ultimakers 3D printer / slicing GUI built on top of the Uranium framework'
 arch=('x86_64')
