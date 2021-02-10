@@ -19,7 +19,7 @@ volumes:
 
 services:
 - name: docker_engine
-  image: docker:dind
+  image: zaggash/docker:dind
   privileged: true
   volumes:
   - name: dockersock
