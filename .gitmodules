@@ -73,3 +73,6 @@
 [submodule "i3lock-color"]
 	path = i3lock-color
 	url = https://aur.archlinux.org/i3lock-color.git
+[submodule "archiver"]
+	path = archiver
+	url = https://aur.archlinux.org/archiver.git
