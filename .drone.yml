@@ -19,7 +19,7 @@ volumes:
 
 services:
 - name: docker_engine
-  image: zaggash/docker:dind
+  image: docker:dind
   privileged: true
   volumes:
   - name: dockersock
@@ -51,7 +51,7 @@ steps:
     - full_build
 
 - name: build_repo
-  image: archlinux
+  image: zaggash/archlinux:glibc-patched
   environment:
     TZ: Europe/Paris
     PGP_KEY:
