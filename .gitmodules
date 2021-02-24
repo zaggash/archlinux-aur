@@ -85,3 +85,6 @@
 [submodule "antibody-bin"]
 	path = antibody-bin
 	url = https://aur.archlinux.org/antibody-bin.git
+[submodule "cura-appimage-bin"]
+	path = cura-appimage-bin
+	url = https://aur.archlinux.org/cura-appimage-bin.git
