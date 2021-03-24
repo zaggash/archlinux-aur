@@ -51,7 +51,7 @@ steps:
     - full_build
 
 - name: build_repo
-  image: zaggash/archlinux:glibc-patched
+  image: archlinux:base
   environment:
     TZ: Europe/Paris
     PGP_KEY:
