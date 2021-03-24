@@ -76,9 +76,6 @@
 [submodule "archiver"]
 	path = archiver
 	url = https://aur.archlinux.org/archiver.git
-[submodule "glibc-linux4"]
-	path = glibc-linux4
-	url = https://aur.archlinux.org/glibc-linux4.git
 [submodule "bitwarden-cli"]
 	path = bitwarden-cli
 	url = https://aur.archlinux.org/bitwarden-cli.git
