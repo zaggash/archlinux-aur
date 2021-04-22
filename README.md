@@ -14,8 +14,8 @@ pacman-key --lsign-key 54231a262e8bf5501c6945d275bcc090ca185c57
 
 - Edit `/etc/pacman.conf` with:
 ```
-[zaggarch-repo]
-Server = https://sourceforge.net/projects/$repo/files/$arch
+[archlinux-aur]
+Server = https://github.com/zaggash/$repo/releases/download/$arch
 SigLevel = Required
 ```
 

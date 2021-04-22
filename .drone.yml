@@ -56,8 +56,8 @@ steps:
     TZ: Europe/Paris
     PGP_KEY:
       from_secret: PGP_KEY
-    SSH_KEY:
-      from_secret: SOURCEFORGE_SSH_KEY
+    GIT_TOKEN:
+      from_secret: GIT_TOKEN
   volumes:
   - name: dockersock
     path: /var/run

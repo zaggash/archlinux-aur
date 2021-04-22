@@ -4,7 +4,7 @@ BUILD_OPTION="$1"
 PGP_KEY="$2"
 SSH_KEY="$3"
 LOCAL_REPO_FOLDER="/repo"
-REMOTE_REPO_NAME="zaggarch-repo"
+REMOTE_REPO_NAME="archlinux-aur"
 
 
 setupEnv () {
@@ -17,25 +17,15 @@ setupEnv () {
   git config pull.rebase false
   git config user.email "bot@ci"
   git config user.name "BotCI"
+  git config push.followTags true
   ## import PGP key
   echo "$PGP_KEY" | base64 -d | gpg --import
-  ## Add my Repo
-  pacman-key --init
-  curl -sL 'https://keybase.io/apinon/pgp_keys.asc?fingerprint=54231a262e8bf5501c6945d275bcc090ca185c57' | pacman-key -a -
-  pacman-key --lsign-key 54231a262e8bf5501c6945d275bcc090ca185c57
-  echo "
-[$REMOTE_REPO_NAME]
-Server = https://sourceforge.net/projects/\$repo/files/\$arch
-SigLevel = Required
-" | tee -a /etc/pacman.conf
-  pacman -Syy
   ## Prepare SSH key
   mkdir -p ~/.ssh -m 700
-  echo "web.sourceforge.net,216.105.38.21 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBCwsY6sZT4MTTkHfpRzYjxG7mnXrGL74RCT2cO/NFvRrZVNB5XNwKNn7G5fHbYLdJ6UzpURDRae1eMg92JG0+yo=" > ~/.ssh/known_hosts
-  echo "$SSH_KEY" | base64 -d > ~/.ssh/key
-  chmod 600 ~/.ssh/key
-  eval $(ssh-agent)
-  ssh-add ~/.ssh/key
+  ## Download Github release
+  gr_version=$(curl -s https://api.github.com/repos/github-release/github-release/releases/latest | grep 'tag_name' | cut -d '"' -f 4)
+  curl -L "https://github.com/github-release/github-release/releases/download/${gr_version}/linux-amd64-github-release.bz2" --output github-release.bz2
+  bzip2 -d github-release.bz2 && chmod +x github-release && mv github-release /usr/bin/
 }
 
 getPlatform () {
@@ -74,11 +64,13 @@ getCurrentVersion () {
 # $1 is the package folder
 # 
   local pkg_dir="$1"
-  local repodb="/var/lib/pacman/sync/$REMOTE_REPO_NAME.db"
+  local repodb="/tmp/$REMOTE_REPO_NAME.db"
   local platform="$(getPlatform "$pkg_dir")"
   local pkg_name="$(getPackageName "$pkg_dir")"
   local current_version="none"
 
+  # Download current repodb
+  curl -L https://github.com/zaggash/archlinux-aur/releases/tag/x86_64 --output "$repodb"
   # Return package version or blank if not in the repo
   current_version=$(tar --exclude='*/*' -tf "$repodb" | sed -n "s@$pkg_name-\(.*\)/@\1@p")
   case "$platform" in
@@ -216,39 +208,43 @@ genRepoDB () {
 
   local local_repo_dir="$LOCAL_REPO_FOLDER"
 
-  repo-add --sign "$local_repo_dir/x86_64/zaggarch-repo.db.tar.gz" "$local_repo_dir"/x86_64/*.pkg.tar.zst
+  repo-add --sign "$local_repo_dir/x86_64/$REMOTE_REPO_NAME.db.tar.gz" "$local_repo_dir"/x86_64/*.pkg.tar.zst
   find "$local_repo_dir/" -type l -delete
-  mv "$local_repo_dir/x86_64/zaggarch-repo.db.tar.gz" "$local_repo_dir/x86_64/zaggarch-repo.db"
-  mv "$local_repo_dir/x86_64/zaggarch-repo.db.tar.gz.sig" "$local_repo_dir/x86_64/zaggarch-repo.db.sig"
-  mv "$local_repo_dir/x86_64/zaggarch-repo.files.tar.gz" "$local_repo_dir/x86_64/zaggarch-repo.files"
-  mv "$local_repo_dir/x86_64/zaggarch-repo.files.tar.gz.sig" "$local_repo_dir/x86_64/zaggarch-repo.files.sig"
+  mv "$local_repo_dir/x86_64/$REMOTE_REPO_NAME.db.tar.gz" "$local_repo_dir/x86_64/$REMOTE_REPO_NAME.db"
+  mv "$local_repo_dir/x86_64/$REMOTE_REPO_NAME.db.tar.gz.sig" "$local_repo_dir/x86_64/$REMOTE_REPO_NAME.db.sig"
+  mv "$local_repo_dir/x86_64/$REMOTE_REPO_NAME.files.tar.gz" "$local_repo_dir/x86_64/$REMOTE_REPO_NAME.files"
+  mv "$local_repo_dir/x86_64/$REMOTE_REPO_NAME.files.tar.gz.sig" "$local_repo_dir/x86_64/$REMOTE_REPO_NAME.files.sig"
 }
 
 uploadRepo () {
 ## Upload repo content to the remote webserver
 # $1 is true/false to delete non existing local files on the remote webserver
 
-  local rsync_delete="$1"
+  local delete="$1"
   local local_repo_dir="$LOCAL_REPO_FOLDER"
-  local rsync_option=""
   local pkg=""
-
-  if [[ "$rsync_delete" == "true" ]]
+  local github_release_args="\--security-token ${GIT_TOKEN} \--user zaggash \--repo archlinux-aur \--tag x86_64"
+  
+  if [[ "$delete" == "true" ]]
   then
-    rsync_option="-avhP -I --delete"
-  else
-    rsync_option="-avhP -I"
-    for pkg in $(cat pkgs_to_build)
-      do
-        [[ -n $pkg ]] || exit 1
-        echo "rm /home/frs/project/zaggarch-repo/x86_64/$pkg*" |\
-          sftp -o StrictHostKeyChecking=yes zaggash@web.sourceforge.net
-      done
+    # Delete the release
+    eval "github-release delete \
+      $github_release_args"
+    # Create empty release from the tag
+    eval "github-release release \
+      $github_release_args \
+      --description 'Archlinux x86_64 repo packages'"
   fi
 
-  eval "rsync -e 'ssh -o StrictHostKeyChecking=yes' \
-      $rsync_option \
-      $local_repo_dir/x86_64 zaggash@web.sourceforge.net:/home/frs/project/zaggarch-repo/"
+  # Upload the packages
+  for pkg in $(ls -1 "$local_repo_dir/x86_64/")
+  do
+    [[ -n $pkg ]] || exit 1
+    eval "github-release upload \
+      $github_release_args \
+      -f $local_repo_dir/x86_64/$pkg \
+      -R -n $pkg"
+  done
 }
 
 prep_full_build() {
@@ -287,6 +283,7 @@ main () {
 
   local option="$1"
   local local_repo_root="$LOCAL_REPO_FOLDER"
+  local repodb="/tmp/$REMOTE_REPO_NAME.db"
   
   for pkgbuild in $(find ./* -type f -name "PKGBUILD")
   do
@@ -304,7 +301,7 @@ main () {
   then
     sed -i '1i[skip ci] Packages updated:' commit_msg
     git commit -F commit_msg
-    cp /var/lib/pacman/sync/zaggarch-repo.db "$local_repo_root/x86_64/zaggarch-repo.db.tar.gz"
+    cp "$repodb" "$local_repo_root/x86_64/$REMOTE_REPO_NAME.db.tar.gz"
     sed -i -e "/No Updates/r commit_msg" -e "/No Updates/d" notification_updates.tpl
   fi
 
