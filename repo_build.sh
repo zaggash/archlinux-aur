@@ -8,9 +8,13 @@ REMOTE_REPO_NAME="archlinux-aur"
 
 
 setupEnv () {
+  local repodb="/tmp/$REMOTE_REPO_NAME.db"
+
   echo "* Prepare Build environment..."
   pacman -Syy --noconfirm --needed git jq openssh rsync docker
   mkdir -p "$LOCAL_REPO_FOLDER/x86_64/"
+  ## Download current repo DB
+  curl -L "https://github.com/zaggash/$REMOTE_REPO_NAME/releases/tag/x86_64/$REMOTE_REPO_NAME.db" --output "$repodb"
   ## setup git stuff
   git submodule update --init --recursive -j 8
   git config advice.detachedHead false
@@ -69,8 +73,6 @@ getCurrentVersion () {
   local pkg_name="$(getPackageName "$pkg_dir")"
   local current_version="none"
 
-  # Download current repodb
-  curl -L https://github.com/zaggash/archlinux-aur/releases/tag/x86_64 --output "$repodb"
   # Return package version or blank if not in the repo
   current_version=$(tar --exclude='*/*' -tf "$repodb" | sed -n "s@$pkg_name-\(.*\)/@\1@p")
   case "$platform" in
