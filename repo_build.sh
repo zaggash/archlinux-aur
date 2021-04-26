@@ -14,7 +14,7 @@ setupEnv () {
   pacman -Syy --noconfirm --needed git jq openssh rsync docker
   mkdir -p "$LOCAL_REPO_FOLDER/x86_64/"
   ## Download current repo DB
-  curl -L "https://github.com/zaggash/$REMOTE_REPO_NAME/releases/tag/x86_64/$REMOTE_REPO_NAME.db" --output "$repodb"
+  curl -L "https://github.com/zaggash/$REMOTE_REPO_NAME/releases/download/x86_64/$REMOTE_REPO_NAME.db" --output "$repodb"
   ## setup git stuff
   git submodule update --init --recursive -j 8
   git config advice.detachedHead false
