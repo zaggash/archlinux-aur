@@ -55,9 +55,6 @@
 [submodule "batsignal"]
 	path = batsignal
 	url = https://aur.archlinux.org/batsignal.git
-[submodule "authy-snap"]
-	path = authy-snap
-	url = https://aur.archlinux.org/authy-snap.git/
 [submodule "molotov"]
 	path = molotov
 	url = https://aur.archlinux.org/molotov.git
@@ -85,3 +82,6 @@
 [submodule "github-release-bin"]
 	path = github-release-bin
 	url = https://aur.archlinux.org/github-release-bin.git
+[submodule "authy"]
+	path = authy
+	url = https://aur.archlinux.org/authy.git
