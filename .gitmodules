@@ -10,9 +10,6 @@
 [submodule "brother-mfc-l3750cdw"]
 	path = brother-mfc-l3750cdw
 	url = https://aur.archlinux.org/brother-mfc-l3750cdw.git/
-[submodule "doctl-bin"]
-	path = doctl-bin
-	url = https://aur.archlinux.org/doctl-bin.git/
 [submodule "downgrade"]
 	path = downgrade
 	url = https://aur.archlinux.org/downgrade.git/
