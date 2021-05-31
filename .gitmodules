@@ -22,9 +22,6 @@
 [submodule "lightdm-webkit-theme-aether"]
 	path = lightdm-webkit-theme-aether
 	url = https://aur.archlinux.org/lightdm-webkit-theme-aether.git/
-[submodule "lnav"]
-	path = lnav
-	url = https://aur.archlinux.org/lnav.git/
 [submodule "mojave-ct-icon-theme-git"]
 	path = mojave-ct-icon-theme-git
 	url = https://aur.archlinux.org/mojave-ct-icon-theme-git.git/
