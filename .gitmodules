@@ -79,3 +79,6 @@
 [submodule "authy"]
 	path = authy
 	url = https://aur.archlinux.org/authy.git
+[submodule "saml2aws-bin"]
+	path = saml2aws-bin
+	url = https://aur.archlinux.org/saml2aws-bin.git
