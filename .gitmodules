@@ -82,3 +82,6 @@
 [submodule "saml2aws-bin"]
 	path = saml2aws-bin
 	url = https://aur.archlinux.org/saml2aws-bin.git
+[submodule "deskreen"]
+	path = deskreen
+	url = https://aur.archlinux.org/deskreen.git
