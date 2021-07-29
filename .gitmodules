@@ -85,3 +85,6 @@
 [submodule "deskreen"]
 	path = deskreen
 	url = https://aur.archlinux.org/deskreen.git
+[submodule "aws-cli-v2-bin"]
+	path = aws-cli-v2-bin
+	url = https://aur.archlinux.org/aws-cli-v2-bin.git
