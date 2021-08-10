@@ -88,3 +88,6 @@
 [submodule "aws-cli-v2-bin"]
 	path = aws-cli-v2-bin
 	url = https://aur.archlinux.org/aws-cli-v2-bin.git
+[submodule "trivy-bin"]
+	path = trivy-bin
+	url = https://aur.archlinux.org/trivy-bin.git
