@@ -91,3 +91,6 @@
 [submodule "trivy-bin"]
 	path = trivy-bin
 	url = https://aur.archlinux.org/trivy-bin.git
+[submodule "flux-bin"]
+	path = flux-bin
+	url = https://aur.archlinux.org/flux-bin.git
