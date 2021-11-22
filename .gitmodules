@@ -94,3 +94,6 @@
 [submodule "flux-bin"]
 	path = flux-bin
 	url = https://aur.archlinux.org/flux-bin.git
+[submodule "kubeseal-bin"]
+	path = kubeseal-bin
+	url = https://aur.archlinux.org/kubeseal-bin.git
