@@ -94,3 +94,6 @@
 [submodule "flux-bin"]
 	path = flux-bin
 	url = https://aur.archlinux.org/flux-bin.git
+[submodule "skypeforlinux-stable-bin"]
+	path = skypeforlinux-stable-bin
+	url = https://aur.archlinux.org/skypeforlinux-stable-bin.git
