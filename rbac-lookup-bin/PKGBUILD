@@ -1,7 +1,7 @@
 # Maintainer: Alex P.
 
 pkgname=rbac-lookup-bin
-pkgver=0.7.1
+pkgver=0.8.0
 pkgrel=1
 pkgdesc="Easily find roles and cluster roles attached to any user, service account, or group name in your Kubernetes cluster"
 arch=('x86_64')
