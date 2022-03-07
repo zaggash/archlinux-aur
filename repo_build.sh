@@ -238,6 +238,8 @@ uploadRepo () {
       --description 'Archlinux x86_64 repo packages'"
   fi
 
+  sleep 5 # Wait for the release to be created and available on github
+
   # Upload the packages
   for pkg in $(ls -1 "$local_repo_dir/x86_64/")
   do
