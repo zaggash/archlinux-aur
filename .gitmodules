@@ -97,3 +97,6 @@
 [submodule "pulseaudio-control"]
 	path = pulseaudio-control
 	url = https://aur.archlinux.org/pulseaudio-control.git
+[submodule "nerdctl-bin"]
+	path = nerdctl-bin
+	url = https://aur.archlinux.org/nerdctl-bin.git
