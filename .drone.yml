@@ -78,18 +78,15 @@ steps:
     commit: false
     force: false
 
-- name: notify_telegram
-  image: appleboy/drone-telegram
+- name: notify_discord
+  image: appleboy/drone-discord
   settings:
-    token:
-      from_secret: TELEGRAM_TOKEN
-    to:
-      from_secret: TELEGRAM_GROUPID
-    format: markdown
-    message_file: notification_updates.tpl
+    webhook_id:
+      from_secret: GLOBAL_CI_DISCORD_ID
+    webhook_token:
+      from_secret: GLOBAL_CI_DISCORD_TOKEN
+    file: notification_updates.tpl
   when:
     status:
     - success
     - failure
-
-
