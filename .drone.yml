@@ -78,6 +78,31 @@ steps:
     commit: false
     force: false
 
+- name: notify_updated_packages
+  image: docker:dind
+  environment:
+    webhook_id:
+      from_secret: GLOBAL_CI_DISCORD_ID
+    webhook_token:
+      from_secret: GLOBAL_CI_DISCORD_TOKEN
+  volumes:
+  - name: dockersock
+    path: /var/run
+  commands:
+    - |
+      if [ -f commit_msg ]
+      then
+        cat commit_msg |\
+          docker run -i --rm ghcr.io/hotio/apprise:latest \
+           --title "Updated Packages:" \
+           "discord://$${webhook_id}/$${webhook_token}?avatar_url=https://github.com/drone/brand/raw/master/logos/png/white/drone-logo-png-white-64.png"
+      else
+        exit 0
+      fi
+  when:
+    status:
+    - success
+        
 - name: notify_discord
   image: appleboy/drone-discord
   settings:
@@ -85,8 +110,9 @@ steps:
       from_secret: GLOBAL_CI_DISCORD_ID
     webhook_token:
       from_secret: GLOBAL_CI_DISCORD_TOKEN
-    file: notification_updates.tpl
+    message: >
+      ❌ Arch Repo build #{{build.number}} of `{{repo.name}}` failed.  
+      🌐 {{ build.link }}
   when:
     status:
-    - success
     - failure

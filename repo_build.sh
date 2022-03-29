@@ -313,7 +313,6 @@ main () {
     sed -i '1i[skip ci] Packages updated:' commit_msg
     git commit -F commit_msg
     cp "$repodb" "$local_repo_root/x86_64/$REMOTE_REPO_NAME.db.tar.gz"
-    sed -i -e "/No Updates/r commit_msg" -e "/No Updates/d" notification_updates.tpl
   fi
 
   if [[ -f pkgs_to_build ]]
