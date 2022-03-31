@@ -92,7 +92,7 @@ steps:
     - |
       if [ -f commit_msg ]
       then
-        cat commit_msg |\
+        grep -v "\[skip ci\]" commit_msg |\
           docker run -i --rm ghcr.io/hotio/apprise:latest \
            --title "Updated Packages:" \
            "discord://$${webhook_id}/$${webhook_token}?avatar_url=https://github.com/drone/brand/raw/master/logos/png/white/drone-logo-png-white-64.png"
