@@ -26,7 +26,7 @@ setupEnv () {
   echo "$PGP_KEY" | base64 -d | gpg --import
   ## Prepare SSH key
   mkdir -p ~/.ssh -m 700
-  ## Download Github release
+  ## Download Github release binary
   gr_version=$(curl -s https://api.github.com/repos/github-release/github-release/releases/latest | grep 'tag_name' | cut -d '"' -f 4)
   curl -L "https://github.com/github-release/github-release/releases/download/${gr_version}/linux-amd64-github-release.bz2" --output github-release.bz2
   bzip2 -d github-release.bz2 && chmod +x github-release && mv github-release /usr/bin/
@@ -234,18 +234,29 @@ uploadRepo () {
   local pkg=""
   local github_release_args="\--security-token ${GIT_TOKEN} \--user zaggash \--repo archlinux-aur \--tag x86_64"
   
-  if [[ "$delete" == "true" ]]
-  then
-    # Delete the release
-    eval "github-release delete \
-      $github_release_args"
-    # Create empty release from the tag
-    eval "github-release release \
-      $github_release_args \
-      --description 'Archlinux x86_64 repo packages'"
-  fi
-
-  sleep 5 # Wait for the release to be created and available on github
+  case "$delete" in
+    true)
+      echo "Replacing current repo release."
+      # If the release tag exists
+      if eval "github-release info $github_release_args"
+      then
+        # Delete the release
+        eval "github-release delete $github_release_args"
+      fi
+      # Create empty release from the tag
+      eval "github-release release \
+        $github_release_args \
+        --description 'Archlinux x86_64 repo packages'"
+      sleep 5 # Wait for the release to be created and available on github
+      ;;
+    false)
+      echo "Skipping, release delete, using same release."
+      ;;
+    *)
+      echo "Error : Upload failed. Unknown option"
+      exit 1
+      ;;
+  esac
 
   # Upload the packages
   for pkg in $(ls -1 "$local_repo_dir/x86_64/")
@@ -258,7 +269,7 @@ uploadRepo () {
   done
 }
 
-prep_full_build() {
+prep_full_build () {
 ## Full repo build logic
 
   local pkg_dir="$1"
