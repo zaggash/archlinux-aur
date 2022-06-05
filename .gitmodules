@@ -103,3 +103,6 @@
 [submodule "teams-for-linux"]
 	path = teams-for-linux
 	url = https://aur.archlinux.org/teams-for-linux.git
+[submodule "krew-bin"]
+	path = krew-bin
+	url = https://aur.archlinux.org/krew-bin.git
