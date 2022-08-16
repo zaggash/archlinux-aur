@@ -64,9 +64,6 @@
 [submodule "archiver"]
 	path = archiver
 	url = https://aur.archlinux.org/archiver.git
-[submodule "bitwarden-cli"]
-	path = bitwarden-cli
-	url = https://aur.archlinux.org/bitwarden-cli.git
 [submodule "cura-appimage-bin"]
 	path = cura-appimage-bin
 	url = https://aur.archlinux.org/cura-appimage-bin.git
