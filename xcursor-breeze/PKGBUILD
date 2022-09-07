@@ -1,7 +1,7 @@
 # Maintainer: Alexandre P.
 
 pkgname=xcursor-breeze
-pkgver=5.25.4
+pkgver=5.25.5
 pkgrel=1
 pkgdesc="Breeze cursor theme (KDE Plasma 5). This package is for usage in non-KDE Plasma desktops."
 arch=('any')
