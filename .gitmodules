@@ -106,3 +106,6 @@
 [submodule "bitwarden-cli-bin"]
 	path = bitwarden-cli-bin
 	url = https://aur.archlinux.org/bitwarden-cli-bin.git
+[submodule "ookla-speedtest-bin"]
+	path = ookla-speedtest-bin
+	url = https://aur.archlinux.org/ookla-speedtest-bin.git
