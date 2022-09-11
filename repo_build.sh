@@ -192,6 +192,7 @@ buildPackage () {
 
   cd "$pkg_dir"
   docker run \
+    --rm \
     -e EXPORT_PKG=true \
     -e CHECKSUM_SRC=true \
     -e PGPKEY="$PGP_KEY" \
