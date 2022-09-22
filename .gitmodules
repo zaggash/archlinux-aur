@@ -52,9 +52,6 @@
 [submodule "molotov"]
 	path = molotov
 	url = https://aur.archlinux.org/molotov.git
-[submodule "teams"]
-	path = teams
-	url = https://aur.archlinux.org/teams.git
 [submodule "asdf-vm"]
 	path = asdf-vm
 	url = https://aur.archlinux.org/asdf-vm.git
