@@ -183,13 +183,6 @@ buildPackage () {
   local pkg_dir="$1"
   local old_dir=$(pwd)
 
-  ## APPLY PATCHES
-  # Fix for teams-for-linux nodejs version (need version between 14 and 16 )
-  if [[ "$pkg_dir" =~ "teams-for-linux" ]]
-  then
-    sed -i 's#"nodejs.*[0-9][0-9]"#"nodejs-lts-fermium"#g' "$pkg_dir/PKGBUILD"
-  fi
-
   cd "$pkg_dir"
   docker run \
     --rm \
