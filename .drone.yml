@@ -23,7 +23,7 @@ services:
   privileged: true
   # Add docker0 MTU to match Flannel VXLAN
   commands:
-    - docker-entrypoint.sh "--mtu=1450"
+    - dockerd-entrypoint.sh "--mtu=1450"
   volumes:
   - name: dockersock
     path: /var/run
