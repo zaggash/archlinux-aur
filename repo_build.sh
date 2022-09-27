@@ -183,13 +183,6 @@ buildPackage () {
   local pkg_dir="$1"
   local old_dir=$(pwd)
 
-  ## APPLY PATCHES
-  # Fix for teams-for-linux PKBUILD dependencies ( can't build python2, deprecated on Arch )
-  if [[ "$pkg_dir" =~ "teams-for-linux" ]]
-  then
-    sed -i 's#"python2" ###' PKGBUILD
-  fi
-
   cd "$pkg_dir"
   docker run \
     --rm \
