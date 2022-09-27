@@ -109,3 +109,6 @@
 [submodule "azure-cli-bin"]
 	path = azure-cli-bin
 	url = https://aur.archlinux.org/azure-cli-bin.git
+[submodule "lightdm-webkit2-theme-glorious"]
+	path = lightdm-webkit2-theme-glorious
+	url = https://aur.archlinux.org/lightdm-webkit2-theme-glorious.git
