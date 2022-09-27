@@ -106,3 +106,6 @@
 [submodule "rpi-imager-bin"]
 	path = rpi-imager-bin
 	url = https://aur.archlinux.org/rpi-imager-bin.git
+[submodule "azure-cli-bin"]
+	path = azure-cli-bin
+	url = https://aur.archlinux.org/azure-cli-bin.git
