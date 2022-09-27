@@ -21,6 +21,9 @@ services:
 - name: docker_engine
   image: docker:dind
   privileged: true
+  # Add docker0 MTU to match Flannel VXLAN
+  commands:
+    - docker-entrypoint.sh "--mtu=1450"
   volumes:
   - name: dockersock
     path: /var/run
