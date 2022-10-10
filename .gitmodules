@@ -112,3 +112,6 @@
 [submodule "lightdm-webkit2-theme-glorious"]
 	path = lightdm-webkit2-theme-glorious
 	url = https://aur.archlinux.org/lightdm-webkit2-theme-glorious.git
+[submodule "arduino-ide-bin"]
+	path = arduino-ide-bin
+	url = https://aur.archlinux.org/arduino-ide-bin.git
