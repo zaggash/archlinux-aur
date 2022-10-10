@@ -115,3 +115,6 @@
 [submodule "arduino-ide-bin"]
 	path = arduino-ide-bin
 	url = https://aur.archlinux.org/arduino-ide-bin.git
+[submodule "velero-bin"]
+	path = velero-bin
+	url = https://aur.archlinux.org/velero-bin.git
