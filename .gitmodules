@@ -121,3 +121,6 @@
 [submodule "esphome-flasher"]
 	path = esphome-flasher
 	url = https://aur.archlinux.org/esphome-flasher.git
+[submodule "jmtpfs"]
+	path = jmtpfs
+	url = https://aur.archlinux.org/jmtpfs.git
