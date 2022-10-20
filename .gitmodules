@@ -118,3 +118,6 @@
 [submodule "velero-bin"]
 	path = velero-bin
 	url = https://aur.archlinux.org/velero-bin.git
+[submodule "esphome-flasher"]
+	path = esphome-flasher
+	url = https://aur.archlinux.org/esphome-flasher.git
