@@ -121,3 +121,6 @@
 [submodule "deskreen-bin"]
 	path = deskreen-bin
 	url = https://aur.archlinux.org/deskreen-bin.git
+[submodule "tor-browser"]
+	path = tor-browser
+	url = https://aur.archlinux.org/tor-browser.git
