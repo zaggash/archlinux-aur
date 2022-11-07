@@ -184,13 +184,29 @@ buildPackage () {
   local old_dir=$(pwd)
 
   cd "$pkg_dir"
-  docker run \
+
+  ## APPLY PATCHES
+  # Fix for tor-browser PKBUILD
+  if [[ "$pkg_dir" =~ "tor-browser" ]]
+  then
+    docker run \
+    --rm \
+    -e EXPORT_PKG=true \
+    -e CHECKSUM_SRC=true \
+    -e PGPKEY="$PGP_KEY" \
+    -e PACKAGER="Alexandre Pinon <github@ziggzagg.fr>" \
+    -e CUSTOM_EXEC="gpg --auto-key-locate nodefault,wkd --locate-keys torbrowser@torproject.org" \
+    -v "$(pwd):/pkg" zaggash/arch-makepkg || exit 1
+  else
+    docker run \
     --rm \
     -e EXPORT_PKG=true \
     -e CHECKSUM_SRC=true \
     -e PGPKEY="$PGP_KEY" \
     -e PACKAGER="Alexandre Pinon <github@ziggzagg.fr>" \
     -v "$(pwd):/pkg" zaggash/arch-makepkg || exit 1
+  fi
+
   cd "$old_dir"
 }
 
