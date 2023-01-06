@@ -124,3 +124,6 @@
 [submodule "tor-browser"]
 	path = tor-browser
 	url = https://aur.archlinux.org/tor-browser.git
+[submodule "chatgpt-desktop-bin"]
+	path = chatgpt-desktop-bin
+	url = https://aur.archlinux.org/chatgpt-desktop-bin.git
