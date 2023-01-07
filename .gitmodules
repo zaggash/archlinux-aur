@@ -76,9 +76,6 @@
 [submodule "flux-bin"]
 	path = flux-bin
 	url = https://aur.archlinux.org/flux-bin.git
-[submodule "plex-media-player"]
-	path = plex-media-player
-	url = https://aur.archlinux.org/plex-media-player.git
 [submodule "pulseaudio-control"]
 	path = pulseaudio-control
 	url = https://aur.archlinux.org/pulseaudio-control.git
