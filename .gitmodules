@@ -124,3 +124,6 @@
 [submodule "chatgpt-desktop-bin"]
 	path = chatgpt-desktop-bin
 	url = https://aur.archlinux.org/chatgpt-desktop-bin.git
+[submodule "xcursor-breeze"]
+	path = xcursor-breeze
+	url = https://aur.archlinux.org/xcursor-breeze.git
