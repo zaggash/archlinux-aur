@@ -1,4 +1,5 @@
-![Repo Build Status](https://img.shields.io/github/actions/workflow/status/zaggash/archlinux-aur/schedule-full_build_repo.yaml?label=REPO%20BUILD&logo=archlinux&logoColor=white&style=for-the-badge)  
+![Repo Build Status](https://img.shields.io/github/actions/workflow/status/zaggash/archlinux-aur/schedule-full_build_repo.yaml?label=REPO%20BUILD&logo=archlinux&logoColor=white&style=for-the-badge)
+![Renovate](https://img.shields.io/github/actions/workflow/status/zaggash/archlinux-aur/schedule-renovate.yaml?label=renovate&logo=RenovateBot&logoColor=white&style=for-the-badge)
 
 
 ## My Archlinux repo

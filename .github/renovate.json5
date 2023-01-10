@@ -1,0 +1,34 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>zaggash/gh-workflows//renovate-config/default"
+  ],
+
+  "username": "zagg-bot[bot]",
+  "gitAuthor": "zagg-bot <121982232+zagg-bot[bot]@users.noreply.github.com>",
+  "repositories": ["zaggash/archlinux-aur"],
+
+  "git-submodules": {
+    "enabled": true
+  },
+
+  "regexManagers": [
+    {
+      "fileMatch": ["(^|/)PKGBUILD$"],
+      "matchStrings": [
+        "pkgver=(?<currentValue>.*) # renovate: datasource=(?<datasource>.*) depName=(?<depName>.*)"
+      ],
+      "extractVersionTemplate": "^v?(?<version>.*)$"
+    }
+  ],
+
+  "packageRules": [
+    {
+      description: "Auto merge custom PKGBUILD pkgver update",
+      matchDatasources: ["github-tags"],
+      automerge: true,
+      ignoreTests: true,
+      automergeType: "branch",
+    }
+  ]
+}
