@@ -1,4 +1,5 @@
-![Drone (self-hosted) with branch](https://img.shields.io/drone/build/zaggash/archlinux-aur/master?label=build&logo=drone&server=https%3A%2F%2Fci.ziggzagg.fr&style=for-the-badge)  
+![Repo Build Status](https://img.shields.io/github/actions/workflow/status/zaggash/archlinux-aur/schedule-full_build_repo.yaml?label=REPO%20BUILD&logo=archlinux&logoColor=white&style=for-the-badge)  
+
 
 ## My Archlinux repo
 This is an unofficial repository for Arch Linux.  

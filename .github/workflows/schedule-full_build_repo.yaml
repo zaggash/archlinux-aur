@@ -1,0 +1,23 @@
+name: Schedule - Build Repo
+
+on:
+  workflow_dispatch:
+    schedule:
+      - cron: "0 0 * * */1"
+    push:
+      branches:
+        - main
+      paths:
+        - ".github/workflows/schedule-full_build_repo.yaml"
+
+jobs:
+  full_build:
+    name: repo
+    uses: zaggash/gh-workflows/.github/workflows/run-aur_full-build.yaml@main
+    with:
+      parallel-build: 8
+      artifacts-retention: 1
+    secrets:
+      app_id: ${{ secrets.ZAGGBOT_APP_ID }}
+      app_private_key: ${{ secrets.ZAGGBOT_APP_PRIVATE_KEY }}
+      gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
