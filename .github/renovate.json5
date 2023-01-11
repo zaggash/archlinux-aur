@@ -9,7 +9,10 @@
   "repositories": ["zaggash/archlinux-aur"],
 
   "git-submodules": {
-    "enabled": true
+    "enabled": true,
+    "automerge": true,
+    "ignoreTests": true,
+    "automergeType": "branch"
   },
 
   "regexManagers": [
