@@ -25,9 +25,6 @@
 [submodule "nerd-fonts-noto-sans-regular-complete"]
 	path = nerd-fonts-noto-sans-regular-complete
 	url = https://aur.archlinux.org/nerd-fonts-noto-sans-regular-complete.git/
-[submodule "polybar"]
-	path = polybar
-	url = https://aur.archlinux.org/polybar.git/
 [submodule "slack-desktop"]
 	path = slack-desktop
 	url = https://aur.archlinux.org/slack-desktop.git/
