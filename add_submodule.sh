@@ -40,7 +40,7 @@ cd ..
 echo -e "\n * add commit message"
 git add .gitmodules
 git add "$MODULE"
-git commit -m "add $MODULE AUR [skip ci]"
+git commit -m "feat(package) add $MODULE AUR package"
 
 echo -e "\n ----------"
 echo "** $MODULE added, if everything is fine, please proceed to the 'git push' **"
