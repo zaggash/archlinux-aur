@@ -6,7 +6,7 @@ on:
       - cron: "0 0 * * */1"
     push:
       branches:
-        - main
+        - master
       paths:
         - ".github/workflows/schedule-full_build_repo.yaml"
 
@@ -15,7 +15,7 @@ jobs:
     name: repo
     uses: zaggash/gh-workflows/.github/workflows/run-aur_full-build.yaml@main
     with:
-      parallel-build: 8
+      parallel-build: 6
       artifacts-retention: 1
     secrets:
       app_id: ${{ secrets.ZAGGBOT_APP_ID }}
