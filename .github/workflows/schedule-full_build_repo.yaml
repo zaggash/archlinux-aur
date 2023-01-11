@@ -3,7 +3,7 @@ name: Schedule - Build Repo
 on:
   workflow_dispatch:
     schedule:
-      - cron: "0 0 * * */1"
+      - cron: "35 2 * * *"
     push:
       branches:
         - master
