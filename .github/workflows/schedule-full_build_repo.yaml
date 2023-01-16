@@ -2,13 +2,13 @@ name: Schedule - Build Repo
 
 on:
   workflow_dispatch:
-    schedule:
-      - cron: "35 2 * * *"
-    push:
-      branches:
-        - master
-      paths:
-        - ".github/workflows/schedule-full_build_repo.yaml"
+  schedule:
+    - cron: "35 2 * * *"
+  push:
+    branches:
+      - master
+    paths:
+      - ".github/workflows/schedule-full_build_repo.yaml"
 
 jobs:
   full_build:
