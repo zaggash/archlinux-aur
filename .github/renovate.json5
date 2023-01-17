@@ -9,10 +9,8 @@
   "repositories": ["zaggash/archlinux-aur"],
 
   "git-submodules": {
-    "enabled": true,
-    "automerge": true,
-    "ignoreTests": true,
-    "automergeType": "branch"
+    // Git Submodules functionality is currently in beta testing, must opt-in
+    "enabled": true
   },
 
   "regexManagers": [
@@ -27,7 +25,17 @@
 
   "packageRules": [
     {
-      description: "Auto merge custom PKGBUILD pkgver update",
+      description: "Automerge submodule digest update",
+      matchManagers: ["git-submodules"],
+      matchDatasources: ["git-refs"],
+      enabled: true,
+      automerge: true,
+      ignoreTests: true,
+      automergeType: "branch",
+    },
+
+    {
+      description: "Automerge custom PKGBUILD pkgver update",
       matchDatasources: ["github-tags"],
       automerge: true,
       ignoreTests: true,
