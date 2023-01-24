@@ -37,6 +37,13 @@
       automerge: true,
       ignoreTests: true,
       automergeType: "branch",
+    },
+
+    {
+      description: "Constrain aws-cli-v2-bin to v2.x.y",
+      matchDatasources: ["github-tags"],
+      matchPaths: ["/aws-cli-v2-bin"],
+      matchCurrentVersion: ">=2.0.0"
     }
   ]
 
