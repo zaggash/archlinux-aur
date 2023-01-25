@@ -55,9 +55,6 @@
 [submodule "cura-appimage-bin"]
 	path = cura-appimage-bin
 	url = https://aur.archlinux.org/cura-appimage-bin.git
-[submodule "github-release-bin"]
-	path = github-release-bin
-	url = https://aur.archlinux.org/github-release-bin.git
 [submodule "authy"]
 	path = authy
 	url = https://aur.archlinux.org/authy.git
