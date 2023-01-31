@@ -1,5 +1,5 @@
 ---
-name: Schedule - Renovate
+name: Renovate
 
 on:
   workflow_dispatch:
@@ -21,12 +21,12 @@ on:
     paths:
       - ".github/renovate-bot.json5"
       - ".github/renovate.json5"
-      - ".github/workflows/schedule-renovate.yaml"
+      - ".github/workflows/run-renovate.yaml"
 
 jobs:
   renovate:
     name: Renovate
-    uses: zaggash/gh-workflows/.github/workflows/run-renovate.yaml@main
+    uses: zaggash/gh-workflows/.github/workflows/action_renovate.yaml@main
     with:
       configurationFile: ".github/renovate-bot.json5"
       dryRun: ${{ inputs.dryRun || 'false' }}

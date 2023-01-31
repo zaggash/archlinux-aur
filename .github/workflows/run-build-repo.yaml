@@ -1,4 +1,4 @@
-name: Schedule - Build Repo
+name: Build Repo
 
 on:
   workflow_dispatch:
@@ -8,12 +8,12 @@ on:
     branches:
       - master
     paths:
-      - ".github/workflows/schedule-full_build_repo.yaml"
+      - ".github/workflows/run-build-repo.yaml"
 
 jobs:
   full_build:
-    name: repo
-    uses: zaggash/gh-workflows/.github/workflows/run-aur_full-build.yaml@main
+    name: Build Repo
+    uses: zaggash/gh-workflows/.github/workflows/action_build-aur-repo.yaml@main
     with:
       parallel-build: 6
       artifacts-retention: 1

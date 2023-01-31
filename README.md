@@ -1,5 +1,5 @@
-![Repo Build Status](https://img.shields.io/github/actions/workflow/status/zaggash/archlinux-aur/schedule-full_build_repo.yaml?label=REPO%20BUILD&logo=archlinux&logoColor=white&style=for-the-badge)
-![Renovate](https://img.shields.io/github/actions/workflow/status/zaggash/archlinux-aur/schedule-renovate.yaml?label=renovate&logo=RenovateBot&logoColor=white&style=for-the-badge)  
+![Repo Build Status](https://img.shields.io/github/actions/workflow/status/zaggash/archlinux-aur/run-build-repo.yaml?label=REPO%20BUILD&logo=archlinux&logoColor=white&style=for-the-badge)
+![Renovate](https://img.shields.io/github/actions/workflow/status/zaggash/archlinux-aur/run-renovate.yaml?label=renovate&logo=RenovateBot&logoColor=white&style=for-the-badge)  
 ![GitHub release (release name instead of tag name)](https://img.shields.io/github/v/release/zaggash/archlinux-aur?display_name=release&include_prereleases&label=Latest%20Repo%20Build&logo=archlinux&style=for-the-badge)
 
 
