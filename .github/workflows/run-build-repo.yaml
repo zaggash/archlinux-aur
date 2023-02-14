@@ -20,4 +20,5 @@ jobs:
     secrets:
       app_id: ${{ secrets.ZAGGBOT_APP_ID }}
       app_private_key: ${{ secrets.ZAGGBOT_APP_PRIVATE_KEY }}
+      gist_token: ${{ secrets.GIST_TOKEN }}
       gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
