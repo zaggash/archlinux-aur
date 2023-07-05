@@ -16,9 +16,6 @@
 [submodule "keybase-bin"]
 	path = keybase-bin
 	url = https://aur.archlinux.org/keybase-bin.git/
-[submodule "lightdm-webkit-theme-aether"]
-	path = lightdm-webkit-theme-aether
-	url = https://aur.archlinux.org/lightdm-webkit-theme-aether.git/
 [submodule "mojave-ct-icon-theme-git"]
 	path = mojave-ct-icon-theme-git
 	url = https://aur.archlinux.org/mojave-ct-icon-theme-git.git/
