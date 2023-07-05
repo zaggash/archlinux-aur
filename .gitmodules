@@ -37,9 +37,6 @@
 [submodule "batsignal"]
 	path = batsignal
 	url = https://aur.archlinux.org/batsignal.git
-[submodule "molotov"]
-	path = molotov
-	url = https://aur.archlinux.org/molotov.git
 [submodule "asdf-vm"]
 	path = asdf-vm
 	url = https://aur.archlinux.org/asdf-vm.git
