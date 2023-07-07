@@ -103,3 +103,6 @@
 [submodule "cura-modern-appimage"]
 	path = cura-modern-appimage
 	url = https://aur.archlinux.org/cura-modern-appimage.git
+[submodule "xrdp"]
+	path = xrdp
+	url = https://aur.archlinux.org/xrdp.git
