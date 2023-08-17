@@ -106,3 +106,6 @@
 [submodule "xrdp"]
 	path = xrdp
 	url = https://aur.archlinux.org/xrdp.git
+[submodule "brave-bin"]
+	path = brave-bin
+	url = https://aur.archlinux.org/brave-bin.git
