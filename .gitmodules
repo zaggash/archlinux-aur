@@ -91,9 +91,6 @@
 [submodule "jmtpfs"]
 	path = jmtpfs
 	url = https://aur.archlinux.org/jmtpfs.git
-[submodule "tor-browser"]
-	path = tor-browser
-	url = https://aur.archlinux.org/tor-browser.git
 [submodule "plex-desktop"]
 	path = plex-desktop
 	url = https://aur.archlinux.org/plex-desktop.git
