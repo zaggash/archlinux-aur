@@ -1,7 +1,7 @@
 # Maintainer: Alexandre P.
 
 pkgname=xcursor-breeze
-pkgver=5.27.8 # renovate: datasource=github-tags depName=KDE/breeze
+pkgver=5.27.9 # renovate: datasource=github-tags depName=KDE/breeze
 pkgrel=1
 pkgdesc="Breeze cursor theme (KDE Plasma 5). This package is for usage in non-KDE Plasma desktops."
 arch=('any')
