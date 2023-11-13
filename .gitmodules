@@ -112,3 +112,6 @@
 [submodule "latte-dock-git"]
 	path = latte-dock-git
 	url = https://aur.archlinux.org/latte-dock-git.git
+[submodule "tela-icon-theme-git"]
+	path = tela-icon-theme-git
+	url = https://aur.archlinux.org/tela-icon-theme-git.git
