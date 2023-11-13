@@ -103,3 +103,6 @@
 [submodule "ms-teams-for-linux-bin"]
 	path = ms-teams-for-linux-bin
 	url = https://aur.archlinux.org/ms-teams-for-linux-bin.git
+[submodule "deskreen-bin"]
+	path = deskreen-bin
+	url = https://aur.archlinux.org/deskreen-bin.git
