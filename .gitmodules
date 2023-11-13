@@ -109,3 +109,6 @@
 [submodule "konsave"]
 	path = konsave
 	url = https://aur.archlinux.org/konsave.git
+[submodule "latte-dock-git"]
+	path = latte-dock-git
+	url = https://aur.archlinux.org/latte-dock-git.git
