@@ -118,3 +118,6 @@
 [submodule "plasma5-themes-layan-git"]
 	path = plasma5-themes-layan-git
 	url = https://aur.archlinux.org/plasma5-themes-layan-git.git
+[submodule "layan-gtk-theme-git"]
+	path = layan-gtk-theme-git
+	url = https://aur.archlinux.org/layan-gtk-theme-git.git
