@@ -1,5 +1,5 @@
 pkgname=aws-cli-v2-bin
-pkgver=2.14.2 # renovate: datasource=github-tags depName=aws/aws-cli
+pkgver=2.14.3 # renovate: datasource=github-tags depName=aws/aws-cli
 pkgrel=1
 pkgdesc='Universal Command Line Interface for Amazon Web Services version 2'
 arch=('x86_64')
