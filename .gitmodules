@@ -106,9 +106,6 @@
 [submodule "deskreen-bin"]
 	path = deskreen-bin
 	url = https://aur.archlinux.org/deskreen-bin.git
-[submodule "tela-icon-theme-git"]
-	path = tela-icon-theme-git
-	url = https://aur.archlinux.org/tela-icon-theme-git.git
 [submodule "seabird"]
 	path = seabird
 	url = https://aur.archlinux.org/seabird.git
