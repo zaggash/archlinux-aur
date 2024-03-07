@@ -109,9 +109,6 @@
 [submodule "tela-icon-theme-git"]
 	path = tela-icon-theme-git
 	url = https://aur.archlinux.org/tela-icon-theme-git.git
-[submodule "plasma5-themes-layan-git"]
-	path = plasma5-themes-layan-git
-	url = https://aur.archlinux.org/plasma5-themes-layan-git.git
 [submodule "seabird"]
 	path = seabird
 	url = https://aur.archlinux.org/seabird.git
