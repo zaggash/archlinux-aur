@@ -106,6 +106,3 @@
 [submodule "deskreen-bin"]
 	path = deskreen-bin
 	url = https://aur.archlinux.org/deskreen-bin.git
-[submodule "seabird"]
-	path = seabird
-	url = https://aur.archlinux.org/seabird.git
