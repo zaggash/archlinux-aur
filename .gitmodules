@@ -88,9 +88,6 @@
 [submodule "jmtpfs"]
 	path = jmtpfs
 	url = https://aur.archlinux.org/jmtpfs.git
-[submodule "plex-desktop"]
-	path = plex-desktop
-	url = https://aur.archlinux.org/plex-desktop.git
 [submodule "cura-bin"]
 	path = cura-bin
 	url = https://aur.archlinux.org/cura-bin.git
