@@ -4,9 +4,6 @@
 [submodule "betterlockscreen"]
 	path = betterlockscreen
 	url = https://aur.archlinux.org/betterlockscreen.git
-[submodule "brother-mfc-l3750cdw"]
-	path = brother-mfc-l3750cdw
-	url = https://aur.archlinux.org/brother-mfc-l3750cdw.git/
 [submodule "downgrade"]
 	path = downgrade
 	url = https://aur.archlinux.org/downgrade.git/
@@ -103,3 +100,6 @@
 [submodule "go-chromecast-git"]
 	path = go-chromecast-git
 	url = https://aur.archlinux.org/go-chromecast-git.git
+[submodule "brother-mfc-l3750cdw"]
+	path = brother-mfc-l3750cdw
+	url = https://aur.archlinux.org/brother-mfc-l3750cdw.git
