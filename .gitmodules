@@ -97,3 +97,6 @@
 [submodule "brother-mfc-l3750cdw"]
 	path = brother-mfc-l3750cdw
 	url = https://aur.archlinux.org/brother-mfc-l3750cdw.git
+[submodule "virtualbox-ext-oracle"]
+	path = virtualbox-ext-oracle
+	url = https://aur.archlinux.org/virtualbox-ext-oracle.git
