@@ -100,3 +100,6 @@
 [submodule "virtualbox-ext-oracle"]
 	path = virtualbox-ext-oracle
 	url = https://aur.archlinux.org/virtualbox-ext-oracle.git
+[submodule "yay"]
+	path = yay
+	url = https://aur.archlinux.org/yay.git
