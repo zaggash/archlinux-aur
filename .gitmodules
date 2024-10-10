@@ -106,3 +106,6 @@
 [submodule "kind-bin"]
 	path = kind-bin
 	url = https://aur.archlinux.org/kind-bin.git
+[submodule "rancher-k3d-bin"]
+	path = rancher-k3d-bin
+	url = https://aur.archlinux.org/rancher-k3d-bin.git
