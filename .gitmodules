@@ -103,3 +103,6 @@
 [submodule "yay"]
 	path = yay
 	url = https://aur.archlinux.org/yay.git
+[submodule "kind-bin"]
+	path = kind-bin
+	url = https://aur.archlinux.org/kind-bin.git
