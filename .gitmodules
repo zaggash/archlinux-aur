@@ -1,9 +1,6 @@
 [submodule "zoom"]
 	path = zoom
 	url = https://aur.archlinux.org/zoom.git
-[submodule "betterlockscreen"]
-	path = betterlockscreen
-	url = https://aur.archlinux.org/betterlockscreen.git
 [submodule "downgrade"]
 	path = downgrade
 	url = https://aur.archlinux.org/downgrade.git/
@@ -13,33 +10,15 @@
 [submodule "keybase-bin"]
 	path = keybase-bin
 	url = https://aur.archlinux.org/keybase-bin.git/
-[submodule "mojave-ct-icon-theme-git"]
-	path = mojave-ct-icon-theme-git
-	url = https://aur.archlinux.org/mojave-ct-icon-theme-git.git/
-[submodule "nerd-fonts-noto-sans-regular-complete"]
-	path = nerd-fonts-noto-sans-regular-complete
-	url = https://aur.archlinux.org/nerd-fonts-noto-sans-regular-complete.git/
 [submodule "slack-desktop"]
 	path = slack-desktop
 	url = https://aur.archlinux.org/slack-desktop.git/
-[submodule "xcwd-git"]
-	path = xcwd-git
-	url = https://aur.archlinux.org/xcwd-git.git/
 [submodule "yay-bin"]
 	path = yay-bin
 	url = https://aur.archlinux.org/yay-bin.git/
 [submodule "visual-studio-code-bin"]
 	path = visual-studio-code-bin
 	url = https://aur.archlinux.org/visual-studio-code-bin.git/
-[submodule "batsignal"]
-	path = batsignal
-	url = https://aur.archlinux.org/batsignal.git
-[submodule "asdf-vm"]
-	path = asdf-vm
-	url = https://aur.archlinux.org/asdf-vm.git
-[submodule "i3lock-color"]
-	path = i3lock-color
-	url = https://aur.archlinux.org/i3lock-color.git
 [submodule "archiver"]
 	path = archiver
 	url = https://aur.archlinux.org/archiver.git
@@ -52,9 +31,6 @@
 [submodule "flux-bin"]
 	path = flux-bin
 	url = https://aur.archlinux.org/flux-bin.git
-[submodule "pulseaudio-control"]
-	path = pulseaudio-control
-	url = https://aur.archlinux.org/pulseaudio-control.git
 [submodule "krew-bin"]
 	path = krew-bin
 	url = https://aur.archlinux.org/krew-bin.git
@@ -67,24 +43,15 @@
 [submodule "azure-cli-bin"]
 	path = azure-cli-bin
 	url = https://aur.archlinux.org/azure-cli-bin.git
-[submodule "lightdm-webkit2-theme-glorious"]
-	path = lightdm-webkit2-theme-glorious
-	url = https://aur.archlinux.org/lightdm-webkit2-theme-glorious.git
 [submodule "arduino-ide-bin"]
 	path = arduino-ide-bin
 	url = https://aur.archlinux.org/arduino-ide-bin.git
 [submodule "velero-bin"]
 	path = velero-bin
 	url = https://aur.archlinux.org/velero-bin.git
-[submodule "jmtpfs"]
-	path = jmtpfs
-	url = https://aur.archlinux.org/jmtpfs.git
 [submodule "cura-bin"]
 	path = cura-bin
 	url = https://aur.archlinux.org/cura-bin.git
-[submodule "xrdp"]
-	path = xrdp
-	url = https://aur.archlinux.org/xrdp.git
 [submodule "brave-bin"]
 	path = brave-bin
 	url = https://aur.archlinux.org/brave-bin.git
