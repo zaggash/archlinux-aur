@@ -1,50 +1,56 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-
-  "extends": [
-    "github>zaggash/gh-workflows//renovate-config/default"
+  $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+  extends: [
+    'github>zaggash/gh-workflows//renovate-config/default',
   ],
-
-  "git-submodules": {
+  'git-submodules': {
     // Git Submodules functionality is currently in beta testing, must opt-in
-    "enabled": true
+    enabled: true,
   },
-
-  "regexManagers": [
+  customManagers: [
     {
-      "fileMatch": ["(^|/)PKGBUILD$"],
-      "matchStrings": [
-        "pkgver=(?<currentValue>.*) # renovate: datasource=(?<datasource>.*) depName=(?<depName>.*)"
+      customType: 'regex',
+      fileMatch: [
+        '(^|/)PKGBUILD$',
       ],
-      "extractVersionTemplate": "^v?(?<version>.*)$"
-    }
+      matchStrings: [
+        'pkgver=(?<currentValue>.*) # renovate: datasource=(?<datasource>.*) depName=(?<depName>.*)',
+      ],
+      extractVersionTemplate: '^v?(?<version>.*)$',
+    },
   ],
-
-  "packageRules": [
+  packageRules: [
     {
-      description: "Automerge submodule digest update",
-      matchManagers: ["git-submodules"],
-      matchDatasources: ["git-refs"],
+      description: 'Automerge submodule digest update',
+      matchManagers: [
+        'git-submodules',
+      ],
+      matchDatasources: [
+        'git-refs',
+      ],
       enabled: true,
       automerge: true,
       ignoreTests: true,
-      automergeType: "branch",
+      automergeType: 'branch',
     },
-
     {
-      description: "Automerge custom PKGBUILD pkgver update",
-      matchDatasources: ["github-tags"],
+      description: 'Automerge custom PKGBUILD pkgver update',
+      matchDatasources: [
+        'github-tags',
+      ],
       automerge: true,
       ignoreTests: true,
-      automergeType: "branch",
+      automergeType: 'branch',
     },
-
     {
-      description: "Constrain aws-cli-v2-bin to v2.x.y",
-      matchDatasources: ["github-tags"],
-      matchPaths: ["/aws-cli-v2-bin"],
-      matchCurrentVersion: ">=2.0.0"
-    }
-  ]
-
+      description: 'Constrain aws-cli-v2-bin to v2.x.y',
+      matchDatasources: [
+        'github-tags',
+      ],
+      matchFileNames: [
+        '/aws-cli-v2-bin',
+      ],
+      matchCurrentVersion: '>=2.0.0',
+    },
+  ],
 }
