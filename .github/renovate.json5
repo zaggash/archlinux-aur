@@ -4,6 +4,7 @@
     'github>zaggash/gh-workflows//renovate-config/default',
   ],
   'git-submodules': {
+    // Git Submodules functionality is currently in beta testing, must opt-in
     enabled: true,
   },
   customManagers: [
