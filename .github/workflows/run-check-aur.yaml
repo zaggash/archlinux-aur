@@ -1,0 +1,19 @@
+name: Build Repo
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "35 2 * * *"
+  push:
+    branches:
+      - master
+    paths:
+      - ".github/workflows/run-check-aur.yaml"
+
+jobs:
+  check_orphaned:
+    name: Check Orphaned AUR repo
+    uses: zaggash/gh-workflows/.github/workflows/action_aur_repo_check_orphaned.yaml@main
+    secrets:
+      app_id: ${{ secrets.ZAGGBOT_APP_ID }}
+      app_private_key: ${{ secrets.ZAGGBOT_APP_PRIVATE_KEY }}
