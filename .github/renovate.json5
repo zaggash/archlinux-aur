@@ -40,6 +40,12 @@
       automerge: true,
       ignoreTests: true,
       automergeType: 'branch',
+      matchUpdateTypes: [
+         'major',
+         'minor',
+         'patch',
+         'digest'
+      ],
     },
     {
       description: '[aws-cli-v2-bin] Constrain to v2.x.y',

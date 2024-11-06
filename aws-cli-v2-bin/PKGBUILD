@@ -1,5 +1,5 @@
 pkgname=aws-cli-v2-bin
-pkgver=2.19.1 # renovate: datasource=github-tags depName=aws/aws-cli
+pkgver=2.19.1 # renovate: datasource=github-tags depName=aws/aws-cli extractVersion=(?<version>.*) versioning=semver
 pkgrel=1
 pkgdesc='Universal Command Line Interface for Amazon Web Services version 2'
 arch=('x86_64')
@@ -19,7 +19,7 @@ package() {
   for i in $pkgdir/$BIN_DIR/*; do
     ln -sf "$BIN_DIR/$(basename $i)" "$pkgdir/usr/bin/"
   done
-  
+
   # Fix symlink for current version
   rm "$pkgdir/usr/share/aws-cli/v2/current"
   ln -s "/usr/share/aws-cli/v2/$pkgver" "$pkgdir/usr/share/aws-cli/v2/current"
