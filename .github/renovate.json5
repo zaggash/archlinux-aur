@@ -14,9 +14,8 @@
         '(^|/)PKGBUILD$',
       ],
       matchStrings: [
-        'pkgver=(?<currentValue>.*) # renovate: datasource=(?<datasource>.*) depName=(?<depName>.*)',
+        'pkgver=(?<currentValue>.*) # renovate: datasource=(?<datasource>.*) depName=(?<depName>.*) extractVersion=(?<extractVersion>.*) versioning=(?<versioning>.*)',
       ],
-      extractVersionTemplate: '^v?(?<version>.*)$',
     },
   ],
   packageRules: [
@@ -43,7 +42,7 @@
       automergeType: 'branch',
     },
     {
-      description: 'Constrain aws-cli-v2-bin to v2.x.y',
+      description: '[aws-cli-v2-bin] Constrain to v2.x.y',
       matchDatasources: [
         'github-tags',
       ],
