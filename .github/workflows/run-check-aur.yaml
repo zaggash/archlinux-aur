@@ -1,4 +1,4 @@
-name: Build Repo
+name: Check Orphaned AUR
 
 on:
   workflow_dispatch:
