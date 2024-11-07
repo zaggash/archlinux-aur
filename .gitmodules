@@ -67,3 +67,6 @@
 [submodule "rancher-k3d-bin"]
 	path = rancher-k3d-bin
 	url = https://aur.archlinux.org/rancher-k3d-bin.git
+[submodule "neohtop"]
+	path = neohtop
+	url = https://aur.archlinux.org/neohtop.git
