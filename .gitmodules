@@ -73,3 +73,6 @@
 [submodule "kopia-ui-bin"]
 	path = kopia-ui-bin
 	url = https://aur.archlinux.org/kopia-ui-bin.git
+[submodule "superfile-bin"]
+	path = superfile-bin
+	url = https://aur.archlinux.org/superfile-bin.git
