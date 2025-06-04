@@ -43,9 +43,6 @@
 [submodule "brave-bin"]
 	path = brave-bin
 	url = https://aur.archlinux.org/brave-bin.git
-[submodule "deskreen-bin"]
-	path = deskreen-bin
-	url = https://aur.archlinux.org/deskreen-bin.git
 [submodule "go-chromecast-git"]
 	path = go-chromecast-git
 	url = https://aur.archlinux.org/go-chromecast-git.git
