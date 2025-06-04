@@ -34,9 +34,6 @@
 [submodule "rpi-imager-bin"]
 	path = rpi-imager-bin
 	url = https://aur.archlinux.org/rpi-imager-bin.git
-[submodule "arduino-ide-bin"]
-	path = arduino-ide-bin
-	url = https://aur.archlinux.org/arduino-ide-bin.git
 [submodule "velero-bin"]
 	path = velero-bin
 	url = https://aur.archlinux.org/velero-bin.git
