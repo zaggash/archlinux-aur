@@ -40,9 +40,6 @@
 [submodule "velero-bin"]
 	path = velero-bin
 	url = https://aur.archlinux.org/velero-bin.git
-[submodule "cura-bin"]
-	path = cura-bin
-	url = https://aur.archlinux.org/cura-bin.git
 [submodule "brave-bin"]
 	path = brave-bin
 	url = https://aur.archlinux.org/brave-bin.git
