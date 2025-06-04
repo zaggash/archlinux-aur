@@ -31,9 +31,6 @@
 [submodule "flux-bin"]
 	path = flux-bin
 	url = https://aur.archlinux.org/flux-bin.git
-[submodule "rpi-imager-bin"]
-	path = rpi-imager-bin
-	url = https://aur.archlinux.org/rpi-imager-bin.git
 [submodule "velero-bin"]
 	path = velero-bin
 	url = https://aur.archlinux.org/velero-bin.git
