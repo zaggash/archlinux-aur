@@ -61,3 +61,6 @@
 [submodule "kopia-ui-bin"]
 	path = kopia-ui-bin
 	url = https://aur.archlinux.org/kopia-ui-bin.git
+[submodule "pixieditor-bin"]
+	path = pixieditor-bin
+	url = https://aur.archlinux.org/pixieditor-bin.git
