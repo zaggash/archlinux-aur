@@ -4,14 +4,13 @@
     'github>zaggash/gh-workflows//renovate-config/default',
   ],
   'git-submodules': {
-    // Git Submodules functionality is currently in beta testing, must opt-in
     enabled: true,
   },
   customManagers: [
     {
       customType: 'regex',
-      fileMatch: [
-        '(^|/)PKGBUILD$',
+      managerFilePatterns: [
+        '/(^|/)PKGBUILD$/',
       ],
       matchStrings: [
         'pkgver=(?<currentValue>.*) # renovate: datasource=(?<datasource>.*) depName=(?<depName>.*) extractVersion=(?<extractVersion>.*) versioning=(?<versioning>.*)',
@@ -41,10 +40,10 @@
       ignoreTests: true,
       automergeType: 'branch',
       matchUpdateTypes: [
-         'major',
-         'minor',
-         'patch',
-         'digest'
+        'major',
+        'minor',
+        'patch',
+        'digest',
       ],
     },
     {
