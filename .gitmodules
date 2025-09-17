@@ -64,9 +64,6 @@
 [submodule "pixieditor-bin"]
 	path = pixieditor-bin
 	url = https://aur.archlinux.org/pixieditor-bin.git
-[submodule "plakar"]
-	path = plakar
-	url = https://aur.archlinux.org/plakar.git
 [submodule "wrkflw-bin"]
 	path = wrkflw-bin
 	url = https://aur.archlinux.org/wrkflw-bin.git
