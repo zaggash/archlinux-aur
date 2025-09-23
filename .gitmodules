@@ -67,3 +67,6 @@
 [submodule "wrkflw-bin"]
 	path = wrkflw-bin
 	url = https://aur.archlinux.org/wrkflw-bin.git
+[submodule "k8sgpt"]
+	path = k8sgpt
+	url = https://aur.archlinux.org/k8sgpt.git
