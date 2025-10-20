@@ -67,3 +67,6 @@
 [submodule "k8sgpt"]
 	path = k8sgpt
 	url = https://aur.archlinux.org/k8sgpt.git
+[submodule "winboat-bin"]
+	path = winboat-bin
+	url = https://aur.archlinux.org/winboat-bin.git
