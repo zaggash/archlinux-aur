@@ -70,3 +70,6 @@
 [submodule "winboat-bin"]
 	path = winboat-bin
 	url = https://aur.archlinux.org/winboat-bin.git
+[submodule "brave-bin"]
+	path = brave-bin
+	url = https://aur.archlinux.org/brave-bin.git
