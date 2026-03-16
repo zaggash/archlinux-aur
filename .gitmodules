@@ -67,9 +67,6 @@
 [submodule "antigravity"]
 	path = antigravity
 	url = https://aur.archlinux.org/antigravity.git
-[submodule "deskreen-ce-bin"]
-	path = deskreen-ce-bin
-	url = https://aur.archlinux.org/deskreen-ce-bin.git
 [submodule "google-cloud-cli"]
 	path = google-cloud-cli
 	url = https://aur.archlinux.org/google-cloud-cli.git
