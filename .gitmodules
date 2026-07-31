@@ -73,3 +73,6 @@
 [submodule "opencode-bin"]
 	path = opencode-bin
 	url = https://aur.archlinux.org/opencode-bin.git
+[submodule "deja-bin"]
+	path = deja-bin
+	url = https://aur.archlinux.org/deja-bin.git
