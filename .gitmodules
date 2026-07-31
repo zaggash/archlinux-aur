@@ -31,9 +31,6 @@
 [submodule "flux-bin"]
 	path = flux-bin
 	url = https://aur.archlinux.org/flux-bin.git
-[submodule "velero-bin"]
-	path = velero-bin
-	url = https://aur.archlinux.org/velero-bin.git
 [submodule "go-chromecast-git"]
 	path = go-chromecast-git
 	url = https://aur.archlinux.org/go-chromecast-git.git
