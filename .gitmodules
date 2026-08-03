@@ -49,9 +49,6 @@
 [submodule "pixieditor-bin"]
 	path = pixieditor-bin
 	url = https://aur.archlinux.org/pixieditor-bin.git
-[submodule "k8sgpt"]
-	path = k8sgpt
-	url = https://aur.archlinux.org/k8sgpt.git
 [submodule "brave-bin"]
 	path = brave-bin
 	url = https://aur.archlinux.org/brave-bin.git
