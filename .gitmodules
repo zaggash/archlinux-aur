@@ -61,9 +61,6 @@
 [submodule "brave-bin"]
 	path = brave-bin
 	url = https://aur.archlinux.org/brave-bin.git
-[submodule "antigravity"]
-	path = antigravity
-	url = https://aur.archlinux.org/antigravity.git
 [submodule "google-cloud-cli"]
 	path = google-cloud-cli
 	url = https://aur.archlinux.org/google-cloud-cli.git
