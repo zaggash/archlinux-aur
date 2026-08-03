@@ -28,9 +28,6 @@
 [submodule "flux-bin"]
 	path = flux-bin
 	url = https://aur.archlinux.org/flux-bin.git
-[submodule "go-chromecast-git"]
-	path = go-chromecast-git
-	url = https://aur.archlinux.org/go-chromecast-git.git
 [submodule "brother-mfc-l3750cdw"]
 	path = brother-mfc-l3750cdw
 	url = https://aur.archlinux.org/brother-mfc-l3750cdw.git
