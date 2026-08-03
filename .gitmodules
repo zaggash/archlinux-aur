@@ -19,9 +19,6 @@
 [submodule "visual-studio-code-bin"]
 	path = visual-studio-code-bin
 	url = https://aur.archlinux.org/visual-studio-code-bin.git/
-[submodule "archiver"]
-	path = archiver
-	url = https://aur.archlinux.org/archiver.git
 [submodule "saml2aws-bin"]
 	path = saml2aws-bin
 	url = https://aur.archlinux.org/saml2aws-bin.git
