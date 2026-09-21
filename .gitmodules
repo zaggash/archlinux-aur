@@ -10,9 +10,6 @@
 [submodule "keybase-bin"]
 	path = keybase-bin
 	url = https://aur.archlinux.org/keybase-bin.git/
-[submodule "slack-desktop"]
-	path = slack-desktop
-	url = https://aur.archlinux.org/slack-desktop.git/
 [submodule "yay-bin"]
 	path = yay-bin
 	url = https://aur.archlinux.org/yay-bin.git/
