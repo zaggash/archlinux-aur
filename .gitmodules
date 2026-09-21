@@ -28,9 +28,6 @@
 [submodule "yay"]
 	path = yay
 	url = https://aur.archlinux.org/yay.git
-[submodule "kopia-bin"]
-	path = kopia-bin
-	url = https://aur.archlinux.org/kopia-bin.git
 [submodule "pixieditor-bin"]
 	path = pixieditor-bin
 	url = https://aur.archlinux.org/pixieditor-bin.git
