@@ -10,9 +10,6 @@
 [submodule "yay-bin"]
 	path = yay-bin
 	url = https://aur.archlinux.org/yay-bin.git/
-[submodule "visual-studio-code-bin"]
-	path = visual-studio-code-bin
-	url = https://aur.archlinux.org/visual-studio-code-bin.git/
 [submodule "saml2aws-bin"]
 	path = saml2aws-bin
 	url = https://aur.archlinux.org/saml2aws-bin.git
