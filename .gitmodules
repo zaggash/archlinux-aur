@@ -55,3 +55,6 @@
 [submodule "opencode-bin"]
 	path = opencode-bin
 	url = https://aur.archlinux.org/opencode-bin.git
+[submodule "paseo-desktop-bin"]
+	path = paseo-desktop-bin
+	url = https://aur.archlinux.org/paseo-desktop-bin.git
