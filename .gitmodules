@@ -25,3 +25,6 @@
 [submodule "paseo-desktop-bin"]
 	path = paseo-desktop-bin
 	url = https://aur.archlinux.org/paseo-desktop-bin.git
+[submodule "aws-session-manager-plugin"]
+	path = aws-session-manager-plugin
+	url = https://aur.archlinux.org/aws-session-manager-plugin.git
